@@ -1,0 +1,6 @@
+ID,Sales,Profit,Region,Sales_Outlier
+96,2000.0,-50.0,South,Outlier
+97,2100.0,-100.0,North,Outlier
+98,2200.0,500.0,West,Outlier
+99,2300.0,600.0,West,Outlier
+100,2500.0,800.0,South,Outlier

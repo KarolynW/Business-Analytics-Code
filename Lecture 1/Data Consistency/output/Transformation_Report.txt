@@ -1,0 +1,21 @@
+Data Transformation Report
+==================================================
+
+Min-Max Scaling:
+- Transformed columns: Age, Income
+- Range: [0, 1]
+
+Z-Score Standardization:
+- Transformed columns: Age, Income
+- Mean = 0, Standard Deviation = 1
+
+One-Hot Encoding:
+- Categorical column transformed: Region
+- Created columns: Region_East, Region_North, Region_South, Region_West
+
+Label Encoding:
+- Categorical column transformed: Satisfaction
+- Mapping:
+  High: 0
+  Low: 1
+  Medium: 2

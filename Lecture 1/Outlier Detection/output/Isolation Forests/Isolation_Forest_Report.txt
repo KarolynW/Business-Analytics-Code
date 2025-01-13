@@ -1,0 +1,12 @@
+Isolation Forest Outlier Detection Report
+==================================================
+
+Number of points analyzed: 10000
+Number of outliers detected: 100
+
+Columns analyzed:
+- SalesAmount
+- ProfitMargin
+- CustomerSatisfaction
+
+Outliers saved to: Isolation_Forest_Outliers.csv

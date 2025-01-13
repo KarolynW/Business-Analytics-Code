@@ -1,0 +1,15 @@
+Z-Score Analysis Report
+==================================================
+
+Column: Sales
+- Mean: 1042.502322672422
+- Standard Deviation: 327.5940703561024
+- Number of Outliers (Z > |3|): 4
+- Outliers saved to: Lecture 1/Outlier Detection/output/Z Scores\Sales_Z_Score_Outliers.csv
+
+Column: Profit
+- Mean: 113.09456048515152
+- Standard Deviation: 99.51399160262675
+- Number of Outliers (Z > |3|): 3
+- Outliers saved to: Lecture 1/Outlier Detection/output/Z Scores\Profit_Z_Score_Outliers.csv
+

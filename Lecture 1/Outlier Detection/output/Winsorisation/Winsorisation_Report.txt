@@ -1,0 +1,21 @@
+Winsorisation Analysis Report
+==================================================
+
+Column: SalesAmount
+- Lower Bound (capped at 7535.05%): 75.35051038083544
+- Upper Bound (capped at 12525.02%): 125.25017847556074
+- Number of values capped at lower bound: 500
+- Number of values capped at upper bound: 500
+
+Column: ProfitMargin
+- Lower Bound (capped at 1174.22%): 11.742160778283365
+- Upper Bound (capped at 2833.92%): 28.339242202096614
+- Number of values capped at lower bound: 500
+- Number of values capped at upper bound: 500
+
+Column: CustomerSatisfaction
+- Lower Bound (capped at 100.00%): 1.0
+- Upper Bound (capped at 500.00%): 5.0
+- Number of values capped at lower bound: 0
+- Number of values capped at upper bound: 0
+

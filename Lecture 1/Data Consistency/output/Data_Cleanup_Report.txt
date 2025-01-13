@@ -1,0 +1,15 @@
+Data Cleanup Report
+==================================================
+
+Date Standardization:
+- Invalid dates found: 26
+- All valid dates standardized to DD/MM/YYYY format.
+
+Currency Conversion:
+- Sales amounts converted to GBP using fixed rates.
+  * USD to GBP rate: 0.8
+  * GBP to GBP rate: 1
+
+Weight Conversion:
+- Product weights converted to kilograms.
+  * Conversion rates: lb to kg = 0.453592

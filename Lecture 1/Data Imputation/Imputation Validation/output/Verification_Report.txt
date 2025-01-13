@@ -1,0 +1,16 @@
+Imputation Verification Report
+==================================================
+
+Column: PurchaseAmount
+- Missing values before: 2
+- Mean before: 1041.6666666666667, After: 1038.4
+- Median before: 800.0, After: 800.0
+
+Correlation Analysis
+- Correlation matrices saved as images.
+- Differences in correlation saved as CSV.
+
+Outlier Analysis for PurchaseAmount: Boxplot saved as image.
+
+Verification Process Completed.
+All outputs are saved in the folder: Lecture 1/Data Imputation/Imputation Validation/output
