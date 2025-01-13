@@ -1,0 +1,10 @@
+Rug Plot Visualization Report
+==================================================
+
+Rug plots have been created for the following columns:
+- PurchaseAmount
+- Age
+- SpendingScore
+
+Each plot includes a density curve and rug plot to visualize the distribution of data.
+Visualizations have been saved in the output folder: Lecture 2/Visualising Descriptive Statistics/Rug Plots/output

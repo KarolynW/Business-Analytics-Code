@@ -1,0 +1,12 @@
+Pair Plot Visualization Report
+==================================================
+
+Pair plots have been created for the following numerical variables:
+- Age
+- AnnualIncome
+- SpendingScore
+- PurchaseFrequency
+
+Additionally, a pair plot with hue has been generated to visualize relationships across regions.
+
+Visualizations have been saved in the output folder: Lecture 2/Visualising Descriptive Statistics/Pair Plots/output

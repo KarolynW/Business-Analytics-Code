@@ -1,0 +1,13 @@
+StoreID,Region,MonthlySales,CustomerFootfall,AdvertisingSpend,ProfitMargin,Percentile,PerformanceTier
+6,North,14800,1240,3000,21,22.0,Bottom 25%
+8,North,14900,1220,3080,19,24.0,Bottom 25%
+11,South,11000,900,1500,10,18.0,Bottom 25%
+12,South,10500,850,1400,9,10.0,Bottom 25%
+13,South,11200,920,1550,11,20.0,Bottom 25%
+14,South,10800,880,1450,10,16.0,Bottom 25%
+15,South,10700,870,1400,9,14.000000000000002,Bottom 25%
+16,South,10300,830,1350,8,6.0,Bottom 25%
+17,South,10400,840,1370,9,8.0,Bottom 25%
+18,South,10600,860,1400,10,12.0,Bottom 25%
+19,South,10200,810,1300,8,4.0,Bottom 25%
+20,South,10100,800,1250,7,2.0,Bottom 25%

@@ -1,0 +1,6 @@
+StoreID,Region,MonthlySales,CustomerFootfall,AdvertisingSpend,ProfitMargin,Percentile,PerformanceTier
+22,East,23000,2200,5500,28,94.0,Top 10%
+26,East,25000,2500,5800,30,100.0,Top 10%
+30,East,24500,2400,5600,29,98.0,Top 10%
+33,East,22500,2250,5500,28,92.0,Top 10%
+35,East,24000,2300,5700,30,96.0,Top 10%

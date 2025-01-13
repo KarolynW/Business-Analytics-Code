@@ -1,0 +1,46 @@
+Percentiles for SpendingScore:
+==================================================
+
+5th Percentile: 4.93
+25th Percentile (Q1): 24.87
+50th Percentile (Median): 49.54
+75th Percentile (Q3): 75.55
+95th Percentile: 95.06
+
+Skewness and Kurtosis:
+==================================================
+
+AnnualIncome:
+- Skewness: 3.97
+- Kurtosis: 38.10
+
+SpendingScore:
+- Skewness: 0.01
+- Kurtosis: -1.21
+
+Interpreting the Results
+Percentiles for SpendingScore
+5th Percentile (4.93): Only 5% of customers have a spending score below 4.93. These are extremely low-spending customers.
+25th Percentile (Q1, 24.87): 25% of customers have a spending score below 24.87. This represents the lower quartile of spending behavior.
+50th Percentile (Median, 49.54): Half of the customers have a spending score below 49.54, marking the middle of the distribution.
+75th Percentile (Q3, 75.55): 75% of customers have a spending score below 75.55, with the top 25% spending more than this value.
+95th Percentile (95.06): The top 5% of customers spend above 95.06, indicating high-value customers.
+Conclusion: The spending score is evenly distributed across its range, with a slight clustering around the median value.
+
+Skewness and Kurtosis
+AnnualIncome:
+
+Skewness (3.97): Indicates a highly positive skew. The distribution has a long right tail, suggesting the presence of a few very high-income outliers.
+Kurtosis (38.10): Extremely high kurtosis suggests the data has heavy tails and sharp peaks, further confirming the presence of significant outliers in income.
+SpendingScore:
+
+Skewness (0.01): Close to 0, indicating the data is nearly symmetric around its mean.
+Kurtosis (-1.21): Negative kurtosis suggests a flatter distribution with fewer extreme values compared to a normal distribution.
+Conclusion:
+
+Annual Income: The data is heavily influenced by outliers, which should be addressed depending on the analysis goals (e.g., winsorization or log transformation).
+Spending Score: The distribution is well-balanced and less prone to extreme values, making it reliable for segmentation and percentile analysis.
+Key Takeaways
+Percentile values reveal customer spending patterns, highlighting low, median, and high spenders.
+The strong skewness and kurtosis of AnnualIncome call for careful consideration during analysis to mitigate the influence of outliers.
+SpendingScore is suitable for straightforward statistical analysis due to its symmetry and low kurtosis.

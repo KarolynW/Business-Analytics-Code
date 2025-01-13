@@ -1,0 +1,19 @@
+Heatmap Visualization Report
+==================================================
+
+Correlation Matrix:
+==================================================
+                       StoreID  MonthlySales  CustomerFootfall  AdvertisingSpend  EmployeeSatisfaction  ProfitMargin
+StoreID               1.000000      0.049502          0.100689          0.061964             -0.096038      0.005767
+MonthlySales          0.049502      1.000000         -0.096954          0.048955              0.080527      0.132478
+CustomerFootfall      0.100689     -0.096954          1.000000         -0.040652             -0.114609     -0.231111
+AdvertisingSpend      0.061964      0.048955         -0.040652          1.000000              0.035765     -0.092150
+EmployeeSatisfaction -0.096038      0.080527         -0.114609          0.035765              1.000000     -0.094952
+ProfitMargin          0.005767      0.132478         -0.231111         -0.092150             -0.094952      1.000000
+
+Key Insights:
+- Positive correlations (close to 1) indicate strong direct relationships.
+- Negative correlations (close to -1) indicate strong inverse relationships.
+- Values near 0 indicate weak or no linear relationship.
+
+Heatmap image saved as: Lecture 2/Visualising Descriptive Statistics/Heatmaps/output\Correlation_Heatmap.png

@@ -1,0 +1,33 @@
+Store Segmentation Report
+==================================================
+
+Objective: Classify stores into groups for targeted strategies.
+
+Key Findings:
+Top 10% High-Performing Stores:
+StoreID: 22, Monthly Sales: $23000.00, Footfall: 2200, Profit Margin: 28%
+StoreID: 26, Monthly Sales: $25000.00, Footfall: 2500, Profit Margin: 30%
+StoreID: 30, Monthly Sales: $24500.00, Footfall: 2400, Profit Margin: 29%
+StoreID: 33, Monthly Sales: $22500.00, Footfall: 2250, Profit Margin: 28%
+StoreID: 35, Monthly Sales: $24000.00, Footfall: 2300, Profit Margin: 30%
+
+Bottom 25% Underperforming Stores:
+StoreID: 6, Monthly Sales: $14800.00, Footfall: 1240, Profit Margin: 21%
+StoreID: 8, Monthly Sales: $14900.00, Footfall: 1220, Profit Margin: 19%
+StoreID: 11, Monthly Sales: $11000.00, Footfall: 900, Profit Margin: 10%
+StoreID: 12, Monthly Sales: $10500.00, Footfall: 850, Profit Margin: 9%
+StoreID: 13, Monthly Sales: $11200.00, Footfall: 920, Profit Margin: 11%
+StoreID: 14, Monthly Sales: $10800.00, Footfall: 880, Profit Margin: 10%
+StoreID: 15, Monthly Sales: $10700.00, Footfall: 870, Profit Margin: 9%
+StoreID: 16, Monthly Sales: $10300.00, Footfall: 830, Profit Margin: 8%
+StoreID: 17, Monthly Sales: $10400.00, Footfall: 840, Profit Margin: 9%
+StoreID: 18, Monthly Sales: $10600.00, Footfall: 860, Profit Margin: 10%
+StoreID: 19, Monthly Sales: $10200.00, Footfall: 810, Profit Margin: 8%
+StoreID: 20, Monthly Sales: $10100.00, Footfall: 800, Profit Margin: 7%
+
+Segment Summary:
+                   AverageSales  AverageFootfall  AverageProfitMargin  StoreCount
+PerformanceTier                                                                  
+Bottom 25%         11291.666667       918.333333            10.916667          12
+Middle Performers  17572.727273      1594.848485            20.454545          33
+Top 10%            23800.000000      2330.000000            29.000000           5

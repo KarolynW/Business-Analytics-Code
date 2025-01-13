@@ -1,0 +1,29 @@
+Sales Summary Report
+==================================================
+
+Mean Monthly Sales: $16688.00
+Median Monthly Sales: $16650.00
+Range of Monthly Sales: $14900.00
+Variance of Monthly Sales: $15893456.00
+Standard Deviation of Monthly Sales: $3986.66
+
+Analysis:
+- Are most stores performing close to the average, or is performance highly variable?
+  The standard deviation of $3986.66 indicates high variability in sales.
+  Top 5 stores above and below the average have been identified.
+- Does the median align with the mean, or is the data skewed by outliers?
+  The mean ($16688.00) and median ($16650.00) are close, indicating minimal skewness.
+
+Top 5 Stores Above Average:
+  StoreID: 26, Monthly Sales: $25000.00
+  StoreID: 30, Monthly Sales: $24500.00
+  StoreID: 35, Monthly Sales: $24000.00
+  StoreID: 22, Monthly Sales: $23000.00
+  StoreID: 33, Monthly Sales: $22500.00
+
+Top 5 Stores Below Average:
+  StoreID: 20, Monthly Sales: $10100.00
+  StoreID: 19, Monthly Sales: $10200.00
+  StoreID: 16, Monthly Sales: $10300.00
+  StoreID: 17, Monthly Sales: $10400.00
+  StoreID: 12, Monthly Sales: $10500.00

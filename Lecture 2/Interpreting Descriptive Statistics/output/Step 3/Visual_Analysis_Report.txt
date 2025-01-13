@@ -1,0 +1,22 @@
+Visual Analysis Report
+==================================================
+
+Objective: Make patterns and trends visible for better interpretation.
+
+Key Findings:
+1. Boxplot Analysis:
+   - North: Min Sales = $14800, Max Sales = $16000
+   - South: Min Sales = $10100, Max Sales = $11200
+   - East: Min Sales = $18500, Max Sales = $25000
+   - West: Min Sales = $15500, Max Sales = $18200
+
+2. Correlation Analysis:
+Correlation matrix between metrics:
+                  MonthlySales  CustomerFootfall  AdvertisingSpend  ProfitMargin
+MonthlySales          1.000000          0.989511          0.983102      0.946144
+CustomerFootfall      0.989511          1.000000          0.984124      0.922711
+AdvertisingSpend      0.983102          0.984124          1.000000      0.955749
+ProfitMargin          0.946144          0.922711          0.955749      1.000000
+
+   - High correlation values indicate strong relationships, e.g., between Advertising Spend and Monthly Sales.
+   - Weak or negative correlations highlight areas with little or no relationship.

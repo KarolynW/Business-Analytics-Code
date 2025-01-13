@@ -1,0 +1,15 @@
+Histogram Customization Report
+==================================================
+
+Visualizations have been created for the following columns:
+- Age
+- AnnualIncome
+- SpendingScore
+- PurchaseFrequency
+
+For each column, the following customizations were applied:
+1. Default histogram with 10 bins.
+2. Histogram with 20 bins.
+3. Histogram with 50 bins.
+
+All visualizations have been saved in the output folder.

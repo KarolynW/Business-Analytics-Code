@@ -1,0 +1,16 @@
+Advanced Descriptive Analysis Report
+==================================================
+
+Weighted Mean:
+- Weighted Mean Sales (weighted by StoreSize): 103339.71
+
+Trimmed Mean:
+- Trimmed Mean Sales (5% trimmed): 100697.15
+
+Coefficient of Variation (CV):
+- Sales: 30.40%
+- Expenses: 25.57%
+
+Visualizations:
+- Sales Boxplot by Region saved as: Sales_Boxplot.png
+- Density Plot for Sales and Expenses saved as: Density_Plot.png
