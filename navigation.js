@@ -2,7 +2,7 @@ async function generateMenu() {
     try {
         const response = await fetch('/site-structure.json');
         if (!response.ok) throw new Error('Failed to fetch site structure');
-        
+
         const siteStructure = await response.json();
 
         // Create the burger menu container
@@ -23,7 +23,10 @@ async function generateMenu() {
             links.forEach(link => {
                 const li = document.createElement('li');
                 const a = document.createElement('a');
-                a.href = new URL(link.url, window.location.origin).href; // Force absolute URLs
+                // Use an absolute path to prevent doubling
+                a.href = link.url.startsWith('/')
+                    ? `${window.location.origin}${link.url}`
+                    : new URL(link.url, window.location.origin).href;
                 a.textContent = link.name;
                 li.appendChild(a);
                 subsectionUl.appendChild(li);
@@ -47,6 +50,8 @@ async function generateMenu() {
 }
 
 document.addEventListener('DOMContentLoaded', generateMenu);
+
+
 
 
 
