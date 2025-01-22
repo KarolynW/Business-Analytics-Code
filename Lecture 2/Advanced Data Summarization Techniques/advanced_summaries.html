@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Data Summarisation Techniques</title>
+    <link rel="stylesheet" href="/Business-Analytics-Code/styles.css">
+    <script src="/Business-Analytics-Code/navigation.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Advanced Data Summarisation Techniques</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>
+                Summarisation techniques are crucial for understanding large datasets by simplifying and highlighting key patterns. 
+                This section explores advanced techniques such as binning, percentiles, skewness, kurtosis, and visualisation strategies to gain deeper insights into data.
+            </p>
+        </section>
+        <section>
+            <h2>Data Binning</h2>
+            <p>
+                Data binning groups continuous data into discrete intervals (bins), making it easier to observe patterns. 
+                For example, age groups are created to analyse population demographics.
+            </p>
+            <pre><code>
+# Define bins for age groups
+age_bins = [18, 25, 35, 45, 55, 65, 75]
+age_labels = ["18-25", "26-35", "36-45", "46-55", "56-65", "66-75"]
+data["AgeGroup"] = pd.cut(data["Age"], bins=age_bins, labels=age_labels, right=False)
+            </code></pre>
+            <h3>Age Distribution</h3>
+            <p>The histogram below shows the distribution of ages across defined bins:</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarization%20Techniques/output/Age_Distribution.png" alt="Age Distribution" style="width:100%;max-width:800px;">
+        </section>
+        <section>
+            <h2>Percentiles and Quantiles</h2>
+            <p>
+                Percentiles and quantiles divide data into intervals, helping to identify how values are distributed. 
+                For instance, the 25th percentile (Q1) and 75th percentile (Q3) represent the boundaries of the interquartile range.
+            </p>
+            <pre><code>
+# Calculate percentiles for SpendingScore
+percentiles = {
+    "5th Percentile": np.percentile(data["SpendingScore"], 5),
+    "25th Percentile (Q1)": np.percentile(data["SpendingScore"], 25),
+    "50th Percentile (Median)": np.percentile(data["SpendingScore"], 50),
+    "75th Percentile (Q3)": np.percentile(data["SpendingScore"], 75),
+    "95th Percentile": np.percentile(data["SpendingScore"], 95),
+}
+            </code></pre>
+        </section>
+        <section>
+            <h2>Skewness and Kurtosis</h2>
+            <p>
+                <strong>Skewness</strong> measures the asymmetry of the data distribution, while <strong>Kurtosis</strong> indicates whether the data distribution has heavy tails or is more peaked than a normal distribution.
+            </p>
+            <h3>Visualising Skewness</h3>
+            <p>Skewness of Annual Income:</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarization%20Techniques/output/AnnualIncome_Skewness.png" alt="Annual Income Skewness" style="width:100%;max-width:800px;">
+            <p>Skewness of Spending Score:</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarization%20Techniques/output/SpendingScore_Skewness.png" alt="Spending Score Skewness" style="width:100%;max-width:800px;">
+            <h3>Visualising Kurtosis</h3>
+            <p>Kurtosis of Annual Income:</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarization%20Techniques/output/AnnualIncome_Kurtosis.png" alt="Annual Income Kurtosis" style="width:100%;max-width:800px;">
+            <p>Kurtosis of Spending Score:</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarization%20Techniques/output/SpendingScore_Kurtosis.png" alt="Spending Score Kurtosis" style="width:100%;max-width:800px;">
+        </section>
+        <section>
+            <h2>Boxplot Analysis</h2>
+            <p>
+                Boxplots summarise the distribution of data, highlighting the median, quartiles, and potential outliers. Below is a boxplot showing Annual Income by Region:
+            </p>
+            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarization%20Techniques/output/Annual_Income_Boxplot.png" alt="Annual Income Boxplot" style="width:100%;max-width:800px;">
+        </section>
+        <section>
+            <h2>Conclusion</h2>
+            <p>
+                Advanced summarisation techniques such as binning, percentiles, and visualisation strategies provide deeper insights into complex datasets. 
+                Understanding skewness and kurtosis further enhances the interpretation of data distributions, ensuring robust analysis.
+            </p>
+        </section>
+    </main>
+</body>
+</html>

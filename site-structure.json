@@ -15,8 +15,15 @@
     { "name": "Data Imputation", "url": "/Lecture 1/Data Imputation/dataimputation.html" },
     { "name": "Detecting Missing Data", "url": "/Lecture 1/Detecting Missing Data/missingdata.html" },
     { "name": "Outlier Detection", "url": "/Lecture 1/Outlier Detection/outlierdetection.html" }
+  ],
+  "Lecture 2": [
+    { "name": "Advanced Measures of Central Tendency and Dispersion", "url": "/Lecture 2/Advanced Measures of Central Tendency and Dispersion/advanced_measures.html" },
+    { "name": "Advanced Data Summarisation Techniques", "url": "/Lecture 2/Advanced Data Summarisation Techniques/advanced_summaries.html" },
+    { "name": "Interpreting Descriptive Statistics", "url": "/Lecture 2/Interpreting Descriptive Statistics/interpreting_statistics.html" },
+    { "name": "Visualising Descriptive Statistics", "url": "/Lecture 2/Visualising Descriptive Statistics/visualising_statistics.html" }
   ]
 }
+
 
 
 
