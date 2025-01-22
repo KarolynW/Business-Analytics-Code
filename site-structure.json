@@ -7,6 +7,7 @@
     { "name": "Python Primer", "url": "/Guidance and Setup/2. Python Primer.html" },
     { "name": "R Primer", "url": "/Guidance and Setup/3. R Primer.html" },
     { "name": "Understanding Python Basics", "url": "/Guidance and Setup/4. Understanding the Basics of Python I.html" },
+    { "name": "Using Venv and Pip", "url": "/Guidance and Setup/4.1 Venv and pip.html" },
     { "name": "Understanding R Basics", "url": "/Guidance and Setup/5. Understanding the Basics of R I.html" },
     { "name": "Glossary of Terms", "url": "/Guidance and Setup/6. Glossary of Terms.html" }
   ],
@@ -21,8 +22,16 @@
     { "name": "Advanced Data Summarisation Techniques", "url": "/Lecture 2/Advanced Data Summarisation Techniques/advanced_summaries.html" },
     { "name": "Interpreting Descriptive Statistics", "url": "/Lecture 2/Interpreting Descriptive Statistics/interpreting_statistics.html" },
     { "name": "Visualising Descriptive Statistics", "url": "/Lecture 2/Visualising Descriptive Statistics/visualising_statistics.html" }
+  ],
+  "Practice Datasets": [
+    { "name": "Sales and Customer Insights Dataset", "url": "/Practice Datasets/Sales and Customer Insights Dataset/sales_and_customer_insights.csv" },
+    { "name": "Starbucks KIEV Dataset", "url": "/Practice Datasets/Starbucks KIEV/index.csv" },
+    { "name": "Video Game Sales Dataset", "url": "/Practice Datasets/Video Game Sales/vgsales.csv" },
+    { "name": "Walmart Sales Dataset", "url": "/Practice Datasets/Walmart Sales/Walmart_Sales.csv" }
   ]
 }
+
+
 
 
 

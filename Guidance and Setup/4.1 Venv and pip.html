@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venv and Pip in Visual Studio Code</title>
+    <link rel="stylesheet" href="/Business-Analytics-Code/styles.css">
+    <script src="/Business-Analytics-Code/navigation.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Venv and Pip in Visual Studio Code</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>
+                Python developers often rely on <strong>venv</strong> and <strong>pip</strong> to manage project environments and dependencies. 
+                This guide explains how to use these tools effectively within <strong>Visual Studio Code</strong> to create isolated environments 
+                and manage Python packages for your projects.
+            </p>
+        </section>
+        <section>
+            <h2>What is <code>venv</code>?</h2>
+            <p>
+                <code>venv</code> (virtual environment) is a tool for creating isolated Python environments. Each environment is self-contained 
+                and includes its own installation of Python and libraries. This ensures that dependencies for one project do not interfere with another.
+            </p>
+            <h3>Key Benefits:</h3>
+            <ul>
+                <li>Prevents dependency conflicts between projects.</li>
+                <li>Enables reproducible environments for collaboration and deployment.</li>
+                <li>Helps maintain a clean global Python installation.</li>
+            </ul>
+            <h3>Creating a Virtual Environment in Visual Studio Code</h3>
+            <pre><code>
+# Create a virtual environment in your project directory
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows
+venv\Scripts\activate
+
+# On macOS/Linux
+source venv/bin/activate
+            </code></pre>
+            <p>
+                Once activated, you'll see the virtual environment's name in your terminal prompt (e.g., <code>(venv)</code>). In Visual Studio Code, the environment can be selected in the bottom-left corner.
+            </p>
+            <p><a href="https://code.visualstudio.com/docs/python/environments#_using-venv" target="_blank">Learn more about using virtual environments in Visual Studio Code</a>.</p>
+        </section>
+        <section>
+            <h2>What is <code>pip</code>?</h2>
+            <p>
+                <code>pip</code> is Python’s package installer, used to install, upgrade, and manage libraries and dependencies for your projects. 
+                It works seamlessly within virtual environments created using <code>venv</code>.
+            </p>
+            <h3>Basic Commands:</h3>
+            <pre><code>
+# Install a package
+pip install package_name
+
+# Install specific version
+pip install package_name==1.0.0
+
+# List installed packages
+pip list
+
+# Upgrade pip itself
+pip install --upgrade pip
+            </code></pre>
+            <h3>Installing Packages in Visual Studio Code</h3>
+            <p>
+                With the virtual environment activated in Visual Studio Code, you can use the integrated terminal to install dependencies. 
+                For example, to install <code>pandas</code> and <code>matplotlib</code>, run:
+            </p>
+            <pre><code>
+pip install pandas matplotlib
+            </code></pre>
+            <p>Installed packages are stored within the virtual environment, ensuring isolation from the global Python installation.</p>
+            <p><a href="https://pip.pypa.io/en/stable/" target="_blank">Learn more about pip</a>.</p>
+        </section>
+        <section>
+            <h2>Using <code>requirements.txt</code> with pip</h2>
+            <p>
+                A <code>requirements.txt</code> file lists all dependencies for a project, enabling reproducibility and easier collaboration.
+            </p>
+            <h3>Creating a <code>requirements.txt</code> File</h3>
+            <pre><code>
+# Generate a requirements.txt file
+pip freeze > requirements.txt
+            </code></pre>
+            <h3>Installing Dependencies from <code>requirements.txt</code></h3>
+            <pre><code>
+# Install dependencies from requirements.txt
+pip install -r requirements.txt
+            </code></pre>
+            <p>
+                This approach ensures all team members or deployment environments use the same package versions.
+            </p>
+        </section>
+        <section>
+            <h2>Best Practices</h2>
+            <ul>
+                <li>Always use a virtual environment for each project.</li>
+                <li>Regularly update your <code>requirements.txt</code> file.</li>
+                <li>Keep pip and virtual environment tools updated.</li>
+                <li>Avoid installing unnecessary packages globally.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Conclusion</h2>
+            <p>
+                Using <code>venv</code> and <code>pip</code> together is a powerful way to manage Python projects effectively. By isolating dependencies 
+                and leveraging Visual Studio Code's environment features, you can ensure clean, maintainable, and reproducible workflows.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
