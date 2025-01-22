@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Measures of Central Tendency and Dispersion</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <script src="/Business-Analytics-Code/navigation.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Advanced Measures of Central Tendency and Dispersion</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>
+                Descriptive statistics help summarise data effectively and provide insights into the central tendency and variability of datasets.
+                This section focuses on advanced measures such as weighted mean, trimmed mean, and coefficient of variation (CV).
+                Additionally, visualisations like density plots and boxplots are used to explore data distributions.
+            </p>
+        </section>
+        <section>
+            <h2>Weighted Mean</h2>
+            <p>
+                The <strong>Weighted Mean</strong> adjusts the average value by assigning weights to each data point. 
+                For example, sales can be weighted by store sizes to account for differences in store capacity.
+            </p>
+            <pre>
+<code>
+def calculate_weighted_mean(values, weights):
+    return np.average(values, weights=weights)
+
+weighted_mean_sales = calculate_weighted_mean(data["Sales"], data["StoreSize"])
+</code>
+            </pre>
+            <p><strong>Result:</strong> Weighted Mean Sales = <code>{{weighted_mean_sales:.2f}}</code></p>
+        </section>
+        <section>
+            <h2>Trimmed Mean</h2>
+            <p>
+                The <strong>Trimmed Mean</strong> removes a small percentage of the highest and lowest values, reducing the impact of outliers.
+                This provides a more robust measure of central tendency.
+            </p>
+            <pre>
+<code>
+def calculate_trimmed_mean(values, trim_percent):
+    trimmed_values = values.sort_values().iloc[int(len(values) * trim_percent):-int(len(values) * trim_percent)]
+    return trimmed_values.mean()
+
+trimmed_mean_sales = calculate_trimmed_mean(data["Sales"], trim_percent=0.05)
+</code>
+            </pre>
+            <p><strong>Result:</strong> Trimmed Mean Sales (5% trimmed) = <code>{{trimmed_mean_sales:.2f}}</code></p>
+        </section>
+        <section>
+            <h2>Coefficient of Variation (CV)</h2>
+            <p>
+                The <strong>Coefficient of Variation</strong> (CV) measures the relative variability of data as a percentage of the mean.
+                It is useful for comparing variability across different datasets, such as sales and expenses.
+            </p>
+            <pre>
+<code>
+cv_sales = data["Sales"].std() / data["Sales"].mean() * 100
+cv_expenses = data["Expenses"].std() / data["Expenses"].mean() * 100
+</code>
+            </pre>
+            <p>
+                <strong>Results:</strong>
+                <ul>
+                    <li>Sales CV: <code>{{cv_sales:.2f}}%</code></li>
+                    <li>Expenses CV: <code>{{cv_expenses:.2f}}%</code></li>
+                </ul>
+            </p>
+        </section>
+        <section>
+            <h2>Visualising Data</h2>
+            <p>
+                Visualisations provide insights into data distributions and variability.
+                The following visualisations are generated:
+            </p>
+            <h3>Density Plot</h3>
+            <p>The density plot compares the distributions of sales and expenses.</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Measures%20of%20Central%20Tendency%20and%20Dispersion/output/Density_Plot.png" alt="Density Plot for Sales and Expenses" style="width:100%;max-width:800px;">
+            <h3>Boxplot</h3>
+            <p>The boxplot illustrates sales distribution across different regions.</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Measures%20of%20Central%20Tendency%20and%20Dispersion/output/Sales_Boxplot.png" alt="Sales Boxplot by Region" style="width:100%;max-width:800px;">
+        </section>
+        <section>
+            <h2>Conclusion</h2>
+            <p>
+                Advanced descriptive measures like weighted mean and trimmed mean provide deeper insights into central tendencies,
+                while the coefficient of variation highlights variability in data. Visualisations complement these metrics,
+                enabling a comprehensive understanding of data distributions and relationships.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
+
