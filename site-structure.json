@@ -1,12 +1,23 @@
 {
+  "Home": [
+    { "name": "Home", "url": "/index.html" }
+  ],
   "Guidance and Setup": [
-      { "name": "Getting Started", "url": "/Guidance and Setup/1. getting started.html" },
-      { "name": "Python Primer", "url": "/Guidance and Setup/2. Python Primer.html" },
-      { "name": "R Primer", "url": "/Guidance and Setup/3. R Primer.html" },
-      { "name": "Understanding Python Basics", "url": "/Guidance and Setup/4. Understanding the Basics of Python I.html" },
-      { "name": "Understanding R Basics", "url": "/Guidance and Setup/5. Understanding the Basics of R I.html" },
-      { "name": "Glossary of Terms", "url": "/Guidance and Setup/6. Glossary of Terms.html" }
+    { "name": "Getting Started", "url": "/Guidance and Setup/1. getting started.html" },
+    { "name": "Python Primer", "url": "/Guidance and Setup/2. Python Primer.html" },
+    { "name": "R Primer", "url": "/Guidance and Setup/3. R Primer.html" },
+    { "name": "Understanding Python Basics", "url": "/Guidance and Setup/4. Understanding the Basics of Python I.html" },
+    { "name": "Understanding R Basics", "url": "/Guidance and Setup/5. Understanding the Basics of R I.html" },
+    { "name": "Glossary of Terms", "url": "/Guidance and Setup/6. Glossary of Terms.html" }
+  ],
+  "Lecture 1": [
+    { "name": "Data Consistency", "url": "/Lecture 1/Data Consistency/dataconsistency.html" },
+    { "name": "Data Imputation", "url": "/Lecture 1/Data Imputation/dataimputation.html" },
+    { "name": "Detecting Missing Data", "url": "/Lecture 1/Detecting Missing Data/missingdata.html" },
+    { "name": "Outlier Detection", "url": "/Lecture 1/Outlier Detection/outlierdetection.html" }
   ]
 }
+
+
 
   

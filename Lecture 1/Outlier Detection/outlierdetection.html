@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outlier Detection</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Outlier Detection Techniques</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>
+                Outliers are data points that deviate significantly from the rest of the dataset. Detecting and handling outliers is essential for accurate data analysis and modelling. This page explores several techniques for detecting outliers and provides practical Python implementations for each method.
+            </p>
+        </section>
+        <section>
+            <h2>Boxplots and IQR</h2>
+            <p>
+                The Interquartile Range (IQR) method identifies outliers as values falling below the lower bound or above the upper bound, defined as:
+                <br>
+                <code>Lower Bound = Q1 - 1.5 * IQR</code><br>
+                <code>Upper Bound = Q3 + 1.5 * IQR</code>
+            </p>
+            <p>
+                Boxplots visually highlight these outliers. Below is an example of a boxplot for the "Profit" column:
+            </p>
+            <img src="output/Box Plots and IQR/Profit_Boxplot.png" alt="Profit Boxplot with Outliers" style="width:100%;max-width:800px;" />
+            <pre>
+<code>
+# Identify and label outliers using IQR
+def identify_outliers(column):
+    Q1 = data[column].quantile(0.25)
+    Q3 = data[column].quantile(0.75)
+    IQR = Q3 - Q1
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+    data[f"{column}_Outlier"] = data[column].apply(
+        lambda x: "Outlier" if (x < lower_bound or x > upper_bound) else "Normal"
+    )
+    return data[f"{column}_Outlier"]
+</code>
+            </pre>
+        </section>
+        <section>
+            <h2>Z-Scores</h2>
+            <p>
+                Z-Scores standardise data points to indicate their distance from the mean in terms of standard deviations. Values with <code>|Z| > 3</code> are commonly considered outliers.
+            </p>
+            <pre>
+<code>
+# Calculate Z-Scores
+def calculate_z_scores(column):
+    mean = data[column].mean()
+    std_dev = data[column].std()
+    z_scores = (data[column] - mean) / std_dev
+    return z_scores
+</code>
+            </pre>
+        </section>
+        <section>
+            <h2>Isolation Forests</h2>
+            <p>
+                Isolation Forest is a machine learning algorithm that isolates outliers by partitioning the dataset. It assigns labels (-1 for outliers, 1 for inliers).
+            </p>
+            <pre>
+<code>
+# Detect outliers using Isolation Forest
+isolation_forest = IsolationForest(n_estimators=100, contamination=0.01, random_state=42)
+data["Outlier_Flag"] = isolation_forest.fit_predict(data_for_analysis)
+</code>
+            </pre>
+        </section>
+        <section>
+            <h2>Winsorisation</h2>
+            <p>
+                Winsorisation caps extreme values at specified percentiles (e.g., 5th and 95th) to reduce their influence on analysis.
+            </p>
+            <pre>
+<code>
+# Apply Winsorisation
+def apply_winsorisation(column, lower_percentile=0.05, upper_percentile=0.95):
+    lower_bound = data[column].quantile(lower_percentile)
+    upper_bound = data[column].quantile(upper_percentile)
+    return data[column].clip(lower=lower_bound, upper=upper_bound)
+</code>
+            </pre>
+        </section>
+        <section>
+            <h2>Scatterplots for Outliers</h2>
+            <p>
+                Scatterplots provide a visual representation of relationships between variables, highlighting potential outliers. Below is an example scatterplot of "Sales" vs "Profit":
+            </p>
+            <img src="output/Scatterplots/Sales_vs_Profit_Scatterplot.png" alt="Sales vs Profit Scatterplot with Outliers" style="width:100%;max-width:800px;" />
+            <pre>
+<code>
+# Generate scatterplots
+sns.scatterplot(data=data, x="Sales", y="Profit", hue="Region", style="Region")
+plt.title("Scatterplot of Sales vs Profit with Outliers Highlighted")
+plt.show()
+</code>
+            </pre>
+        </section>
+        <section>
+            <h2>Conclusion</h2>
+            <p>
+                Each outlier detection technique has its strengths and limitations. The choice of method depends on the dataset's characteristics and the analysis goals. By identifying and handling outliers effectively, analysts can ensure the robustness of their insights.
+            </p>
+        </section>
+    </main>
+</body>
+</html>

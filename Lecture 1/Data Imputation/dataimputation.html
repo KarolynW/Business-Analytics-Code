@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Imputation</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Data Imputation Techniques</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction to Data Imputation</h2>
+            <p>
+                Missing data is a common challenge in datasets used for business analytics. 
+                Data imputation refers to techniques used to replace missing or null values with plausible estimates, 
+                ensuring the integrity and usability of datasets for analysis.
+            </p>
+            <p>
+                This page provides an overview of four key data imputation techniques commonly used in analytics:
+            </p>
+            <ul>
+                <li><strong>Imputation Validation:</strong> Assessing the accuracy of imputed data.</li>
+                <li><strong>K-Nearest Neighbours (KNN) Imputation:</strong> A technique based on the similarity of data points.</li>
+                <li><strong>Mean/Median Imputation:</strong> Filling missing values with the mean or median of the dataset.</li>
+                <li><strong>Multiple Imputation:</strong> Advanced statistical methods to account for the uncertainty in missing data.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Imputation Validation</h2>
+            <p>
+                Validation ensures that imputed values are accurate and do not introduce bias into the dataset. Techniques like
+                <strong>cross-validation</strong> are often employed to evaluate the imputation's effectiveness.
+            </p>
+        </section>
+        <section>
+            <h2>K-Nearest Neighbours (KNN) Imputation</h2>
+            <p>
+                This method identifies <strong>K</strong> closest data points (neighbours) to the missing value based on distance metrics like
+                Euclidean or Manhattan distance. The missing value is imputed as the average or majority value from these neighbours.
+            </p>
+            <p>
+                <strong>Advantages:</strong>
+                <ul>
+                    <li>Accounts for the relationship between variables.</li>
+                    <li>Suitable for both numerical and categorical data.</li>
+                </ul>
+                <strong>Challenges:</strong>
+                <ul>
+                    <li>Computationally intensive for large datasets.</li>
+                    <li>May introduce bias if the dataset has significant outliers.</li>
+                </ul>
+            </p>
+        </section>
+        <section>
+            <h2>Mean/Median Imputation</h2>
+            <p>
+                A simple and efficient technique where missing values are replaced with the mean or median of the respective column.
+            </p>
+            <p>
+                <strong>Advantages:</strong>
+                <ul>
+                    <li>Quick and easy to implement.</li>
+                    <li>Useful for datasets with small amounts of missing data.</li>
+                </ul>
+                <strong>Challenges:</strong>
+                <ul>
+                    <li>Can distort relationships between variables.</li>
+                    <li>Not suitable for datasets with large amounts of missing data.</li>
+                </ul>
+            </p>
+        </section>
+        <section>
+            <h2>Multiple Imputation</h2>
+            <p>
+                A more sophisticated approach that generates multiple estimates for missing values, creating multiple datasets to reflect the uncertainty around missing data. These datasets are then aggregated for analysis.
+            </p>
+            <p>
+                <strong>Advantages:</strong>
+                <ul>
+                    <li>Accounts for the uncertainty in missing data.</li>
+                    <li>Maintains variability in the dataset.</li>
+                </ul>
+                <strong>Challenges:</strong>
+                <ul>
+                    <li>Complex to implement and requires statistical expertise.</li>
+                    <li>Computationally intensive for large datasets.</li>
+                </ul>
+            </p>
+        </section>
+        <section>
+            <h2>Conclusion</h2>
+            <p>
+                Choosing the right imputation technique depends on the nature of the data, the proportion of missing values, and the analysis goals. 
+                These methods ensure that datasets remain robust and reliable for business analytics.
+            </p>
+        </section>
+    </main>
+</body>
+</html>

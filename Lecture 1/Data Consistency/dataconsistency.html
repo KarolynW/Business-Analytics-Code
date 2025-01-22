@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Consistency</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <script src="../../navigation.js" defer></script>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav></nav>
+
+    <header>
+        <h1>Data Consistency</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>
+                Data consistency ensures uniformity, accuracy, and reliability of data across various systems and datasets. Inconsistent data can lead to erroneous analysis, misinterpretation, and poor decision-making. This guide focuses on resolving common data inconsistencies, using practical examples implemented in Python.
+            </p>
+        </section>
+        <section>
+            <h2>Standardising Dates</h2>
+            <p>
+                Date formats often vary between datasets, causing challenges in sorting, filtering, or merging records. Standardising dates ensures compatibility and simplifies analysis. In the provided Python example, the <code>pd.to_datetime</code> function standardises dates to the UK format <strong>DD/MM/YYYY</strong>, with invalid dates coerced to <code>NaT</code> (Not a Time).
+            </p>
+            <pre><code>
+def standardize_dates_to_uk(date_column):
+    standardized_dates = pd.to_datetime(date_column, errors='coerce', dayfirst=True)
+    return standardized_dates.dt.strftime('%d/%m/%Y')
+</code></pre>
+            <p><strong>Challenges Addressed:</strong></p>
+            <ul>
+                <li>Handling multiple date formats (e.g., MM/DD/YYYY, YYYY-MM-DD).</li>
+                <li>Identifying and flagging invalid dates.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Converting Currencies</h2>
+            <p>
+                Currency inconsistencies arise when datasets include monetary values in different currencies. Standardising all values to a single currency enables accurate aggregation and comparison. In the example, a dictionary maps currencies (e.g., USD, GBP) to their conversion rates.
+            </p>
+            <pre><code>
+conversion_rates = {"USD": 0.80, "GBP": 1}
+
+def convert_currency_to_gbp(sales_column, unit_column):
+    converted_sales = sales_column * unit_column.map(conversion_rates)
+    return converted_sales
+</code></pre>
+            <p><strong>Implementation Notes:</strong></p>
+            <ul>
+                <li>Fixed rates are used for simplicity; real-world applications should use dynamic rates (e.g., via an API).</li>
+                <li>Invalid or missing currency units are handled gracefully to avoid computation errors.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Unifying Weight Units</h2>
+            <p>
+                Inconsistent weight measurements (e.g., kilograms and pounds) can complicate inventory or logistics analysis. Standardising weights to a single unit (e.g., kilograms) ensures clarity and consistency.
+            </p>
+            <pre><code>
+weight_conversion = {"kg": 1, "lb": 0.453592}
+
+def convert_weights_to_kg(weight_column, unit_column):
+    converted_weights = weight_column * unit_column.map(weight_conversion)
+    return converted_weights
+</code></pre>
+            <p><strong>Conversion Details:</strong></p>
+            <ul>
+                <li>1 pound (lb) equals 0.453592 kilograms (kg).</li>
+                <li>Handles missing or invalid weight units by flagging or excluding affected rows.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Data Transformation Techniques</h2>
+            <p>
+                Beyond resolving inconsistencies, data transformation prepares datasets for analysis. Common transformations include:
+            </p>
+            <h3>Min-Max Scaling</h3>
+            <p>Transforms numerical data to a fixed range (e.g., [0, 1]), ensuring comparability across variables with different scales.</p>
+            <pre><code>
+scaler_minmax = MinMaxScaler()
+data["Age_MinMax"] = scaler_minmax.fit_transform(data[["Age"]])
+</code></pre>
+            <h3>Z-Score Standardisation</h3>
+            <p>Centers data around 0 with a standard deviation of 1, useful for machine learning algorithms sensitive to feature scaling.</p>
+            <pre><code>
+scaler_zscore = StandardScaler()
+data["Age_ZScore"] = scaler_zscore.fit_transform(data[["Age"]])
+</code></pre>
+            <h3>Encoding Categorical Variables</h3>
+            <p>
+                Converts categorical data into numerical format:
+            </p>
+            <ul>
+                <li><strong>One-Hot Encoding:</strong> Creates binary columns for each category.</li>
+                <li><strong>Label Encoding:</strong> Assigns unique integers to categories.</li>
+            </ul>
+            <pre><code>
+# One-Hot Encoding
+region_dummies = pd.get_dummies(data["Region"], prefix="Region")
+data = pd.concat([data, region_dummies], axis=1)
+
+# Label Encoding
+label_encoder = LabelEncoder()
+data["Satisfaction_LabelEncoded"] = label_encoder.fit_transform(data["Satisfaction"])
+</code></pre>
+        </section>
+        <section>
+            <h2>Saving Results and Generating Reports</h2>
+            <p>
+                Cleaned and transformed datasets are saved to a designated output folder. Summary reports document applied transformations, providing transparency and traceability.
+            </p>
+            <pre><code>
+# Save cleaned data
+cleaned_file = "Cleaned_Data.xlsx"
+data.to_excel(cleaned_file, index=False)
+
+# Generate report
+report_file = "Data_Cleanup_Report.txt"
+with open(report_file, "w") as report:
+    report.write("Data Cleanup Summary...\n")
+</code></pre>
+        </section>
+        <section>
+            <h2>Conclusion</h2>
+            <p>
+                Maintaining data consistency is essential for accurate analysis and decision-making. By standardising dates, currencies, and units, and applying transformations like scaling and encoding, datasets become robust and reliable for business analytics tasks.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
