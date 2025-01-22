@@ -1,7 +1,7 @@
 async function generateMenu() {
     try {
-        // Use a relative path to site-structure.json
-        const response = await fetch('./site-structure.json');
+        const repoName = "/Business-Analytics-Code"; // Adjust this to match your GitHub repository name
+        const response = await fetch(`${repoName}/site-structure.json`);
         if (!response.ok) throw new Error('Failed to fetch site structure');
 
         const siteStructure = await response.json();
@@ -24,8 +24,8 @@ async function generateMenu() {
             links.forEach(link => {
                 const li = document.createElement('li');
                 const a = document.createElement('a');
-                // Use a relative URL
-                a.href = link.url;
+                // Use absolute paths including the repo name
+                a.href = `${repoName}${link.url}`;
                 a.textContent = link.name;
                 li.appendChild(a);
                 subsectionUl.appendChild(li);
@@ -49,6 +49,7 @@ async function generateMenu() {
 }
 
 document.addEventListener('DOMContentLoaded', generateMenu);
+
 
 
 
