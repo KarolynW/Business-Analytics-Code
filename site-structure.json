@@ -1,0 +1,12 @@
+{
+  "Guidance and Setup": [
+      { "name": "Getting Started", "url": "/Guidance and Setup/1. getting started.html" },
+      { "name": "Python Primer", "url": "/Guidance and Setup/2. Python Primer.html" },
+      { "name": "R Primer", "url": "/Guidance and Setup/3. R Primer.html" },
+      { "name": "Understanding Python Basics", "url": "/Guidance and Setup/4. Understanding the Basics of Python I.html" },
+      { "name": "Understanding R Basics", "url": "/Guidance and Setup/5. Understanding the Basics of R I.html" },
+      { "name": "Glossary of Terms", "url": "/Guidance and Setup/6. Glossary of Terms.html" }
+  ]
+}
+
+  

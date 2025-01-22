@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Basics with VS Code</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../navigation.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Python Basics with VS Code</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>
+                Python is a versatile programming language that’s widely used for data analysis, automation, and web development. This guide introduces Python basics, including how to use pip for managing libraries, and integrates with Visual Studio Code (VS Code) for coding.
+            </p>
+        </section>
+        <section>
+            <h2>Step 1: Writing Python Code in VS Code</h2>
+            <ol>
+                <li>Open VS Code and create a new Python file:
+                    <ul>
+                        <li>Click on <strong>File</strong> > <strong>New File</strong>.</li>
+                        <li>Save the file with a <code>.py</code> extension (e.g., <code>basics.py</code>).</li>
+                    </ul>
+                </li>
+                <li>Write your first Python program:
+                    <pre><code>print("Welcome to Python Basics!")</code></pre>
+                </li>
+                <li>Run your Python code:
+                    <ul>
+                        <li>Right-click in the editor and select <strong>Run Python File</strong>.</li>
+                        <li>Or use the terminal: type <code>python basics.py</code> and press Enter.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <h2>Step 2: Using Libraries in Python</h2>
+            <p>
+                Python libraries are pre-written code modules that provide additional functionality. Popular libraries include:
+            </p>
+            <ul>
+                <li><strong>pandas</strong>: For data manipulation and analysis.</li>
+                <li><strong>numpy</strong>: For numerical computations.</li>
+                <li><strong>matplotlib</strong>: For data visualisation.</li>
+                <li><strong>scikit-learn</strong>: For machine learning.</li>
+            </ul>
+            <p>
+                Libraries are managed using pip, Python’s package manager.
+            </p>
+        </section>
+        <section>
+            <h2>Step 3: Installing Libraries with pip</h2>
+            <ol>
+                <li>Open the integrated terminal in VS Code (<code>Ctrl + `</code>).</li>
+                <li>Install a library using pip. For example:
+                    <pre><code>pip install pandas</code></pre>
+                </li>
+                <li>Check installed libraries by typing:
+                    <pre><code>pip list</code></pre>
+                </li>
+                <li>Use the library in your Python script. For example:
+                    <pre><code>
+import pandas as pd
+print(pd.__version__)
+                    </code></pre>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <h2>Additional Resources</h2>
+            <p>
+                Explore these resources for more Python basics:
+            </p>
+            <ul>
+                <li><a href="https://code.visualstudio.com/docs/python/python-tutorial" target="_blank">Python in VS Code - Official Tutorial</a></li>
+                <li><a href="https://realpython.com/" target="_blank">Real Python - Beginner Guides</a></li>
+                <li><a href="https://docs.python.org/3/tutorial/" target="_blank">Python.org - Official Python Tutorial</a></li>
+                <li><a href="https://pypi.org/" target="_blank">PyPI - The Python Package Index</a></li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

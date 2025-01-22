@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R Basics with RStudio</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../navigation.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>R Basics with RStudio</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>
+                R is a powerful programming language used for statistical computing and data visualisation. This guide introduces the basics of R, including working with RStudio and managing libraries (packages) for data analysis.
+            </p>
+        </section>
+        <section>
+            <h2>Step 1: Writing R Code in RStudio</h2>
+            <ol>
+                <li>Open RStudio and create a new R script:
+                    <ul>
+                        <li>Click on <strong>File</strong> > <strong>New File</strong> > <strong>R Script</strong>.</li>
+                    </ul>
+                </li>
+                <li>Write your first R program:
+                    <pre><code>print("Welcome to R Basics!")</code></pre>
+                </li>
+                <li>Run your R code:
+                    <ul>
+                        <li>Highlight the code and press <code>Ctrl + Enter</code> (Windows) or <code>Cmd + Enter</code> (Mac).</li>
+                        <li>The output will appear in the Console panel.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <h2>Step 2: Using Libraries in R</h2>
+            <p>
+                R libraries (packages) extend the functionality of the language. Popular libraries include:
+            </p>
+            <ul>
+                <li><strong>dplyr</strong>: For data manipulation.</li>
+                <li><strong>ggplot2</strong>: For data visualisation.</li>
+                <li><strong>tidyr</strong>: For data cleaning and reshaping.</li>
+                <li><strong>shiny</strong>: For creating interactive web applications.</li>
+            </ul>
+            <p>
+                Libraries are installed and managed through the built-in package manager or via commands in the Console.
+            </p>
+        </section>
+        <section>
+            <h2>Step 3: Installing and Loading Libraries</h2>
+            <ol>
+                <li>Install a library using the <code>install.packages()</code> function. For example:
+                    <pre><code>install.packages("ggplot2")</code></pre>
+                </li>
+                <li>Load the library into your script:
+                    <pre><code>library(ggplot2)</code></pre>
+                </li>
+                <li>Check installed libraries by clicking on the <strong>Packages</strong> tab in RStudio.</li>
+                <li>Use the library in your code. For example:
+                    <pre><code>
+data(mpg, package = "ggplot2")
+ggplot(data = mpg, aes(x = displ, y = hwy)) + geom_point()
+                    </code></pre>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <h2>Additional Resources</h2>
+            <p>
+                Explore these resources for more R basics:
+            </p>
+            <ul>
+                <li><a href="https://posit.co/download/rstudio-desktop/" target="_blank">RStudio Desktop - Official Download</a></li>
+                <li><a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html" target="_blank">An Introduction to R - Official Guide</a></li>
+                <li><a href="https://www.datacamp.com/courses/free-introduction-to-r" target="_blank">DataCamp: Free Introduction to R</a></li>
+                <li><a href="https://ggplot2.tidyverse.org/" target="_blank">ggplot2 - Official Documentation</a></li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
