@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualising Descriptive Statistics</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <script src="/Business-Analytics-Code/navigation.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Visualising Descriptive Statistics</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>
+                Visualising descriptive statistics helps in interpreting datasets and identifying patterns or anomalies. This section demonstrates four common techniques for visualising data:
+            </p>
+            <ul>
+                <li><strong>Heatmaps:</strong> Represent relationships between variables.</li>
+                <li><strong>Histograms:</strong> Show frequency distributions of data.</li>
+                <li><strong>Pair Plots:</strong> Explore relationships between multiple variables.</li>
+                <li><strong>Rug Plots:</strong> Combine density curves with detailed data points.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Heatmaps</h2>
+            <p>
+                A heatmap provides a colour-coded representation of the correlation matrix, indicating the strength and direction of relationships between numeric variables.
+            </p>
+            <pre><code>
+# Generate the correlation matrix
+correlation_matrix = data.corr()
+
+# Create a heatmap
+sns.heatmap(
+    correlation_matrix, 
+    annot=True, 
+    cmap="coolwarm", 
+    vmin=-1, 
+    vmax=1, 
+    linewidths=0.5
+)
+plt.title("Correlation Heatmap")
+plt.savefig("Correlation_Heatmap.png")
+plt.close()
+            </code></pre>
+            <h3>Visualisation Example</h3>
+            <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Heatmaps/output/Correlation_Heatmap.png" alt="Correlation Heatmap" style="width:100%;max-width:800px;">
+        </section>
+        <section>
+            <h2>Histograms</h2>
+            <p>
+                Histograms depict the frequency distribution of a variable, with the option to overlay a density curve for smoother visualisation.
+            </p>
+            <pre><code>
+# Generate histogram with density
+sns.histplot(data["Age"], bins=10, kde=True, color="blue")
+plt.title("Age Distribution")
+plt.savefig("Age_Histogram.png")
+plt.close()
+            </code></pre>
+            <h3>Customisation Examples</h3>
+            <p>The following histograms demonstrate various binning strategies:</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Histogram/output/Age_Default_Histogram.png" alt="Default Histogram" style="width:100%;max-width:800px;">
+            <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Histogram/output/Age_20Bins_Histogram.png" alt="Histogram with 20 Bins" style="width:100%;max-width:800px;">
+            <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Histogram/output/Age_50Bins_Histogram.png" alt="Histogram with 50 Bins" style="width:100%;max-width:800px;">
+        </section>
+        <section>
+            <h2>Pair Plots</h2>
+            <p>
+                Pair plots display pairwise relationships between variables in a dataset, helping to identify correlations and clusters. Adding a hue allows categorisation based on a specific variable.
+            </p>
+            <pre><code>
+# Generate pair plot
+sns.pairplot(data, hue="Region", diag_kind="kde")
+plt.savefig("Pair_Plot_With_Hue.png")
+plt.close()
+            </code></pre>
+            <h3>Visualisation Example</h3>
+            <p>The pair plot below highlights relationships between key metrics, categorised by region:</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Pair%20Plots/output/Pair_Plot_With_Hue.png" alt="Pair Plot with Hue" style="width:100%;max-width:800px;">
+        </section>
+        <section>
+            <h2>Rug Plots</h2>
+            <p>
+                Rug plots combine density curves with individual data points, offering a granular view of data distributions along an axis.
+            </p>
+            <pre><code>
+# Create rug plot
+sns.kdeplot(data["SpendingScore"], fill=True, alpha=0.6, color="blue")
+sns.rugplot(data["SpendingScore"], color="red", height=0.1)
+plt.title("Rug Plot and Density for Spending Score")
+plt.savefig("SpendingScore_Rug_Plot.png")
+plt.close()
+            </code></pre>
+            <h3>Visualisation Example</h3>
+            <p>The rug plot below illustrates the distribution of spending scores:</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Rug%20Plots/output/SpendingScore_Rug_Plot.png" alt="Spending Score Rug Plot" style="width:100%;max-width:800px;">
+        </section>
+        <section>
+            <h2>Conclusion</h2>
+            <p>
+                Visualisation techniques provide powerful tools for interpreting descriptive statistics. By using heatmaps, histograms, pair plots, and rug plots, analysts can gain deeper insights into relationships, distributions, and trends within datasets.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
+
