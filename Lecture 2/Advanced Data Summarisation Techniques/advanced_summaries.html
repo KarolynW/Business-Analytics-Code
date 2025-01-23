@@ -35,53 +35,277 @@ data["AgeGroup"] = pd.cut(data["Age"], bins=age_bins, labels=age_labels, right=F
             <p>The histogram below shows the distribution of ages across defined bins:</p>
             <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarisation%20Techniques/output/Age_Distribution.png" alt="Age Distribution" style="width:100%;max-width:800px;">
         </section>
+        
         <section>
             <h2>Percentiles and Quantiles</h2>
             <p>
-                Percentiles and quantiles divide data into intervals, helping to identify how values are distributed. 
-                For instance, the 25th percentile (Q1) and 75th percentile (Q3) represent the boundaries of the interquartile range.
+                Percentiles and quantiles are key tools for understanding the distribution of data. By dividing data into intervals, they help identify the spread, central tendency, and outliers in a dataset. 
+                These metrics are particularly useful in comparing and ranking values across datasets or within groups.
             </p>
+            <h3>Definitions</h3>
+            <ul>
+                <li>
+                    <strong>Percentile:</strong> Represents the value below which a given percentage of data falls. For example, the 25th percentile (Q1) indicates that 25% of the values are below this point.
+                </li>
+                <li>
+                    <strong>Quantile:</strong> Divides data into equal parts, typically in fractions (e.g., quartiles divide data into four parts, deciles into ten parts). 
+                    Percentiles are a specific type of quantile.
+                </li>
+            </ul>
+            <h3>Why Use Percentiles and Quantiles?</h3>
+            <ul>
+                <li>
+                    <strong>Outlier Detection:</strong> Identifying values outside typical ranges (e.g., below Q1 - 1.5 * IQR or above Q3 + 1.5 * IQR).
+                </li>
+                <li>
+                    <strong>Segmentation:</strong> Grouping data into performance tiers, such as top 10% (high performers) or bottom 25% (underperformers).
+                </li>
+                <li>
+                    <strong>Decision-Making:</strong> Providing benchmarks for decision-making (e.g., the 90th percentile of customer spending may indicate premium customers).
+                </li>
+            </ul>
+            <h3>Calculation Example</h3>
+            <p>The following Python code calculates key percentiles for a dataset:</p>
             <pre><code>
-# Calculate percentiles for SpendingScore
-percentiles = {
-    "5th Percentile": np.percentile(data["SpendingScore"], 5),
-    "25th Percentile (Q1)": np.percentile(data["SpendingScore"], 25),
-    "50th Percentile (Median)": np.percentile(data["SpendingScore"], 50),
-    "75th Percentile (Q3)": np.percentile(data["SpendingScore"], 75),
-    "95th Percentile": np.percentile(data["SpendingScore"], 95),
-}
+        # Calculate percentiles for SpendingScore
+        percentiles = {
+            "5th Percentile": np.percentile(data["SpendingScore"], 5),
+            "25th Percentile (Q1)": np.percentile(data["SpendingScore"], 25),
+            "50th Percentile (Median)": np.percentile(data["SpendingScore"], 50),
+            "75th Percentile (Q3)": np.percentile(data["SpendingScore"], 75),
+            "95th Percentile": np.percentile(data["SpendingScore"], 95),
+        }
+        
+        # Interquartile Range (IQR)
+        iqr = percentiles["75th Percentile (Q3)"] - percentiles["25th Percentile (Q1)"]
             </code></pre>
+            <h3>Visualisation of Percentiles</h3>
+            <p>
+                Percentiles can be visualised using boxplots or cumulative distribution plots. Below is an example of how percentiles divide a dataset:
+            </p>
+            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarisation%20Techniques/output/SpendingScore_Percentiles.png" alt="Spending Score Percentiles" style="width:100%;max-width:800px;">
+            <h3>Applications in Business Analytics</h3>
+            <p>
+                Percentiles and quantiles play an important role in real-world analytics:
+            </p>
+            <ul>
+                <li>
+                    <strong>Customer Segmentation:</strong> Use spending percentiles to group customers into low, medium, and high-value segments.
+                </li>
+                <li>
+                    <strong>Employee Performance:</strong> Rank employees based on their percentile in sales performance or other KPIs.
+                </li>
+                <li>
+                    <strong>Risk Assessment:</strong> Identify assets or portfolios in the top 5% of risk (e.g., using the Value at Risk metric in finance).
+                </li>
+                <li>
+                    <strong>Education Analytics:</strong> Classify students' test scores into percentiles for comparative performance assessment.
+                </li>
+            </ul>
+            <h3>When to Use Percentiles and Quantiles</h3>
+            <p>
+                Percentiles and quantiles are most effective when you need to:
+            </p>
+            <ul>
+                <li>
+                    <strong>Compare values:</strong> Identify where a value stands relative to others (e.g., is it in the top 10%?).
+                </li>
+                <li>
+                    <strong>Standardise scoring:</strong> Create comparable measures across different datasets or categories.
+                </li>
+                <li>
+                    <strong>Highlight distribution:</strong> Identify whether data is evenly distributed or concentrated in specific ranges.
+                </li>
+            </ul>
+            <h3>Limitations</h3>
+            <ul>
+                <li>
+                    Percentiles are influenced by outliers, which may distort their interpretation.
+                </li>
+                <li>
+                    Quantile-based segmentation assumes a uniform distribution of data within each segment, which may not always align with real-world behaviour.
+                </li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>
+                Percentiles and quantiles provide powerful ways to summarise, rank, and segment data, making them essential tools in business analytics. 
+                Their application spans multiple domains, from customer segmentation to risk analysis, and their interpretation often provides actionable insights for decision-making.
+            </p>
         </section>
+        
         <section>
             <h2>Skewness and Kurtosis</h2>
             <p>
-                <strong>Skewness</strong> measures the asymmetry of the data distribution, while <strong>Kurtosis</strong> indicates whether the data distribution has heavy tails or is more peaked than a normal distribution.
+                Understanding the shape of data distributions is essential in statistical analysis. Two critical metrics for summarising distribution shape are <strong>skewness</strong> and <strong>kurtosis</strong>. These metrics help identify deviations from a normal distribution and guide the selection of appropriate statistical methods and models.
             </p>
+        </section>
+        
+        <section>
+            <h3>What is Skewness?</h3>
+            <p>
+                <strong>Skewness</strong> quantifies the asymmetry of a data distribution relative to its mean. A skewed distribution indicates that the data are not symmetrically distributed around the mean, which can have significant implications for analysis and decision-making:
+            </p>
+            <ul>
+                <li>
+                    A <strong>positive skew</strong> (right-skewed) means the tail on the right side is longer or more pronounced. This often occurs when a small number of data points are much larger than the majority (e.g., income distributions in an economy).
+                </li>
+                <li>
+                    A <strong>negative skew</strong> (left-skewed) means the tail on the left side is longer. This is common in scenarios where there are very low values compared to the majority.
+                </li>
+                <li>
+                    A <strong>skewness of 0</strong> indicates a perfectly symmetrical distribution, as seen in a normal distribution.
+                </li>
+            </ul>
+            <p>
+                <strong>Why Skewness Matters:</strong> Skewness informs analysts about potential outliers and helps determine whether to use parametric tests (which assume normality) or non-parametric alternatives. For example:
+            </p>
+            <ul>
+                <li>
+                    <strong>High skewness:</strong> Indicates the need for data transformation (e.g., logarithmic or square root transformation) to stabilise variance and improve model performance.
+                </li>
+                <li>
+                    <strong>Low skewness:</strong> Suggests the data may already be suitable for linear models or parametric tests.
+                </li>
+            </ul>
             <h3>Visualising Skewness</h3>
+            <p>The following visualisations illustrate skewness in data:</p>
             <p>Skewness of Annual Income:</p>
             <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarisation%20Techniques/output/AnnualIncome_Skewness.png" alt="Annual Income Skewness" style="width:100%;max-width:800px;">
             <p>Skewness of Spending Score:</p>
             <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarisation%20Techniques/output/SpendingScore_Skewness.png" alt="Spending Score Skewness" style="width:100%;max-width:800px;">
+        </section>
+        
+        <section>
+            <h3>What is Kurtosis?</h3>
+            <p>
+                <strong>Kurtosis</strong> measures the "tailedness" or the concentration of data in the tails and the peak of a distribution. While skewness focuses on symmetry, kurtosis focuses on extreme values:
+            </p>
+            <ul>
+                <li>
+                    <strong>Leptokurtic (Kurtosis &gt; 3):</strong> Indicates heavy tails and a sharp peak, suggesting many extreme outliers (e.g., stock market returns).
+                </li>
+                <li>
+                    <strong>Platykurtic (Kurtosis &lt; 3):</strong> Indicates light tails and a flat peak, suggesting fewer extreme values (e.g., uniform distributions).
+                </li>
+                <li>
+                    <strong>Mesokurtic (Kurtosis = 3):</strong> Indicates a normal distribution.
+                </li>
+            </ul>
+            <p>
+                <strong>Why Kurtosis Matters:</strong> Kurtosis provides insights into the risk of extreme values in datasets, which is critical in fields like finance (e.g., identifying the likelihood of rare but extreme losses). Additionally, high kurtosis may highlight the need for robust statistical methods.
+            </p>
             <h3>Visualising Kurtosis</h3>
+            <p>The following visualisations illustrate kurtosis in data:</p>
             <p>Kurtosis of Annual Income:</p>
             <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarisation%20Techniques/output/AnnualIncome_Kurtosis.png" alt="Annual Income Kurtosis" style="width:100%;max-width:800px;">
             <p>Kurtosis of Spending Score:</p>
             <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarisation%20Techniques/output/SpendingScore_Kurtosis.png" alt="Spending Score Kurtosis" style="width:100%;max-width:800px;">
         </section>
+        
+        <section>
+            <h3>When to Use Skewness and Kurtosis</h3>
+            <p>
+                Skewness and kurtosis are particularly useful in the following scenarios:
+            </p>
+            <ul>
+                <li>
+                    <strong>Data Cleaning:</strong> Identify and address asymmetry or outliers in data to improve analysis reliability.
+                </li>
+                <li>
+                    <strong>Model Selection:</strong> Assess whether data meet the assumptions of statistical tests or models, such as normality for regression.
+                </li>
+                <li>
+                    <strong>Risk Analysis:</strong> Evaluate the likelihood of extreme values or unexpected events in industries like finance or insurance.
+                </li>
+                <li>
+                    <strong>Exploratory Data Analysis (EDA):</strong> Gain insights into the structure and distribution of data before applying further techniques.
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h3>Conclusion</h3>
+            <p>
+                Skewness and kurtosis are powerful metrics for understanding the shape of data distributions. By identifying asymmetry and tail behaviour, analysts can make informed decisions about transformations, statistical tests, and modelling strategies.
+                Visualisations like histograms and density plots further enhance the interpretability of these metrics, enabling deeper insights into the data.
+            </p>
+        </section>
+        
         <section>
             <h2>Boxplot Analysis</h2>
             <p>
-                Boxplots summarise the distribution of data, highlighting the median, quartiles, and potential outliers. Below is a boxplot showing Annual Income by Region:
+                A <strong>boxplot</strong> is a statistical visualisation tool that summarises the distribution of a dataset. It provides a five-number summary:
             </p>
+            <ul>
+                <li><strong>Minimum:</strong> The smallest value in the dataset, excluding outliers.</li>
+                <li><strong>First Quartile (Q1):</strong> The 25th percentile, representing the lower boundary of the interquartile range (IQR).</li>
+                <li><strong>Median:</strong> The middle value of the dataset, dividing it into two equal halves.</li>
+                <li><strong>Third Quartile (Q3):</strong> The 75th percentile, representing the upper boundary of the IQR.</li>
+                <li><strong>Maximum:</strong> The largest value in the dataset, excluding outliers.</li>
+            </ul>
+            <p>
+                Boxplots are particularly useful for detecting <strong>outliers</strong>, which are data points that fall outside the range defined by:
+            </p>
+            <pre><code>
+        Lower Bound = Q1 - 1.5 * IQR
+        Upper Bound = Q3 + 1.5 * IQR
+            </code></pre>
+            <p>
+                The example below shows a boxplot of annual income by region. The box represents the IQR, the line inside the box is the median, 
+                and the "whiskers" extend to the smallest and largest non-outlier values. Any data points beyond the whiskers are considered outliers.
+            </p>
+            <h3>Interpretation of Boxplot</h3>
+            <p>
+                A boxplot helps answer the following questions:
+            </p>
+            <ul>
+                <li>Is the data distribution symmetric, or does it show skewness?</li>
+                <li>Are there any significant outliers that require attention?</li>
+                <li>How does the data vary across different groups (e.g., regions)?</li>
+                <li>What is the central tendency and spread of the data?</li>
+            </ul>
             <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Data%20Summarisation%20Techniques/output/Annual_Income_Boxplot.png" alt="Annual Income Boxplot" style="width:100%;max-width:800px;">
+            <p>
+                In the visualisation above, differences in annual income distributions between regions can be observed. For instance:
+            </p>
+            <ul>
+                <li>
+                    Regions with a wider IQR have more variability in income.
+                </li>
+                <li>
+                    Outliers indicate stores with unusually high or low incomes, warranting further investigation.
+                </li>
+                <li>
+                    Comparing medians highlights the relative income levels between regions.
+                </li>
+            </ul>
         </section>
+        
+
         <section>
             <h2>Conclusion</h2>
             <p>
-                Advanced summarisation techniques such as binning, percentiles, and visualisation strategies provide deeper insights into complex datasets. 
-                Understanding skewness and kurtosis further enhances the interpretation of data distributions, ensuring robust analysis.
+                Advanced summarisation techniques, including boxplots, percentiles, and visualisation strategies, offer critical insights into complex datasets. 
+                These tools not only provide a clear snapshot of central tendency and variability but also reveal outliers and patterns that may otherwise go unnoticed.
+            </p>
+            <p>
+                Understanding metrics like skewness and kurtosis enhances the interpretation of data distributions, ensuring a robust analysis. 
+                Together, these techniques empower analysts to make data-driven decisions, identify trends, and uncover actionable insights for businesses and research.
+            </p>
+            <p>
+                By integrating these tools into exploratory data analysis (EDA), analysts can:
+            </p>
+            <ul>
+                <li>Detect and address outliers that could bias results.</li>
+                <li>Segment data for group-level analysis or benchmarking.</li>
+                <li>Highlight relationships and distribution characteristics for effective modelling.</li>
+            </ul>
+            <p>
+                In summary, leveraging these techniques in business analytics ensures a comprehensive understanding of data and its implications, paving the way for meaningful insights and informed decision-making.
             </p>
         </section>
+        
+
     </main>
 </body>
 </html>

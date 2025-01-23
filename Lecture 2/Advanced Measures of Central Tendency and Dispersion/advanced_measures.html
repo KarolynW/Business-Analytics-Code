@@ -23,77 +23,561 @@
         <section>
             <h2>Weighted Mean</h2>
             <p>
-                The <strong>Weighted Mean</strong> adjusts the average value by assigning weights to each data point. 
-                For example, sales can be weighted by store sizes to account for differences in store capacity.
+                The <strong>Weighted Mean</strong> is an advanced measure of central tendency that accounts for the relative importance or contribution of each data point. 
+                Unlike the simple mean, where each value is treated equally, the weighted mean assigns a weight to each value, allowing for a more accurate representation 
+                when the importance of data points varies.
             </p>
-            <pre>
-<code>
-def calculate_weighted_mean(values, weights):
-    return np.average(values, weights=weights)
-
-weighted_mean_sales = calculate_weighted_mean(data["Sales"], data["StoreSize"])
-</code>
-            </pre>
+            <p>
+                For example, when analysing sales across stores of varying sizes, it is important to account for the differences in store capacity. 
+                A small store's sales figures may not be as representative as a large store's figures, and the weighted mean ensures this is reflected in the analysis.
+            </p>
+            <h3>Formula</h3>
+            <p>The weighted mean is calculated as:</p>
+            <pre><code>Weighted Mean = Σ(w * x) / Σ(w)</code></pre>
+            <p>Where:</p>
+            <ul>
+                <li><strong>w:</strong> The weight assigned to each value (e.g., store size).</li>
+                <li><strong>x:</strong> The value (e.g., sales).</li>
+                <li><strong>Σ:</strong> The sum of all weighted values.</li>
+            </ul>
+            <h3>Python Example</h3>
+            <p>The following Python function calculates the weighted mean for a dataset:</p>
+            <pre><code>
+        # Import necessary libraries
+        import numpy as np
+        
+        # Define the function to calculate the weighted mean
+        def calculate_weighted_mean(values, weights):
+            """
+            Calculate the weighted mean of a dataset.
+        
+            Parameters:
+                values (array-like): The data points (e.g., sales).
+                weights (array-like): The weights corresponding to the data points (e.g., store size).
+        
+            Returns:
+                float: The weighted mean of the dataset.
+            """
+            return np.average(values, weights=weights)
+        
+        # Example usage:
+        sales = [500, 600, 400, 800]  # Monthly sales for four stores
+        store_sizes = [50, 80, 30, 100]  # Store sizes corresponding to the sales
+        weighted_mean_sales = calculate_weighted_mean(sales, store_sizes)
+        
+        print(f"The weighted mean sales is: ${weighted_mean_sales:.2f}")
+            </code></pre>
+            <p>
+                In this example, the sales values are weighted by the store sizes. Larger stores have a higher weight, ensuring their sales contributions are more accurately reflected in the calculation.
+            </p>
+            <h3>Visualising Weighted Mean</h3>
+            <p>
+                To better understand the impact of weights, a bar chart can be used to show the relationship between store sizes (weights) and sales. 
+                Below is an example of how to visualise this:
+            </p>
+            <pre><code>
+        # Visualise the relationship between store size and sales
+        import matplotlib.pyplot as plt
+        
+        plt.bar(range(len(sales)), sales, color="skyblue", label="Sales")
+        plt.bar(range(len(store_sizes)), store_sizes, alpha=0.5, label="Store Sizes (Weights)")
+        plt.xlabel("Store Index")
+        plt.ylabel("Values")
+        plt.title("Weighted Mean Example: Store Sales and Sizes")
+        plt.legend()
+        plt.show()
+            </code></pre>
+            <h3>When to Use the Weighted Mean</h3>
+            <p>
+                The weighted mean is particularly useful when:
+            </p>
+            <ul>
+                <li>Some data points have more influence than others (e.g., sales weighted by store size or population).</li>
+                <li>Data is aggregated from categories or groups with varying significance (e.g., regional sales performance).</li>
+                <li>Ensuring a more representative average by accounting for varying sample sizes or contributions.</li>
+            </ul>
+            <h3>Limitations</h3>
+            <p>
+                While the weighted mean provides a more representative measure in certain cases, it has limitations:
+            </p>
+            <ul>
+                <li>Requires accurate weights; if weights are poorly chosen, the result may be misleading.</li>
+                <li>Not suitable for datasets where all values should be treated equally.</li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>
+                The weighted mean is a powerful tool for analysing datasets with varying levels of importance across data points. 
+                By incorporating weights, analysts can ensure that their calculations reflect the relative significance of values, leading to more accurate and meaningful insights.
+            </p>
             <p><strong>Result:</strong> Weighted Mean Sales = <code>{{weighted_mean_sales:.2f}}</code></p>
         </section>
+        
+        
         <section>
             <h2>Trimmed Mean</h2>
             <p>
-                The <strong>Trimmed Mean</strong> removes a small percentage of the highest and lowest values, reducing the impact of outliers.
-                This provides a more robust measure of central tendency.
+                The <strong>Trimmed Mean</strong> is a robust measure of central tendency that reduces the impact of extreme outliers by excluding a specified percentage of the smallest and largest values from the dataset. 
+                It provides a more reliable average when the data contains extreme values that might skew the simple mean.
             </p>
-            <pre>
-<code>
-def calculate_trimmed_mean(values, trim_percent):
-    trimmed_values = values.sort_values().iloc[int(len(values) * trim_percent):-int(len(values) * trim_percent)]
-    return trimmed_values.mean()
-
-trimmed_mean_sales = calculate_trimmed_mean(data["Sales"], trim_percent=0.05)
-</code>
-            </pre>
+            <h3>Why Use the Trimmed Mean?</h3>
+            <p>
+                The trimmed mean is particularly useful in situations where outliers can distort the analysis, such as:
+            </p>
+            <ul>
+                <li><strong>Sales Data:</strong> Removing unusually high or low sales figures that are not representative of the overall trend.</li>
+                <li><strong>Survey Responses:</strong> Discarding extreme values in Likert scale responses to get a balanced view of customer satisfaction.</li>
+                <li><strong>Financial Metrics:</strong> Eliminating extreme gains or losses in stock returns for more accurate performance evaluation.</li>
+            </ul>
+            <h3>Formula</h3>
+            <p>
+                The trimmed mean is calculated by removing <code>p%</code> of the smallest and largest values and then taking the mean of the remaining data. The process can be summarised as:
+            </p>
+            <pre><code>Trimmed Mean = Mean(values[int(n * p): -int(n * p)])</code></pre>
+            <p>
+                Where:
+            </p>
+            <ul>
+                <li><strong>p:</strong> Proportion of values to trim from each end.</li>
+                <li><strong>n:</strong> Total number of data points.</li>
+            </ul>
+            <h3>Python Example</h3>
+            <p>The following Python function demonstrates how to calculate the trimmed mean:</p>
+            <pre><code>
+        import pandas as pd
+        
+        # Define the function to calculate the trimmed mean
+        def calculate_trimmed_mean(values, trim_percent):
+            """
+            Calculate the trimmed mean of a dataset.
+        
+            Parameters:
+                values (Series): The data points (e.g., sales).
+                trim_percent (float): The percentage of data to trim from each end (e.g., 0.05 for 5%).
+        
+            Returns:
+                float: The trimmed mean of the dataset.
+            """
+            # Sort the values and remove the top and bottom percentages
+            trimmed_values = values.sort_values().iloc[int(len(values) * trim_percent):-int(len(values) * trim_percent)]
+            return trimmed_values.mean()
+        
+        # Example usage
+        sales = pd.Series([500, 600, 700, 10000, 300])  # Example sales data
+        trimmed_mean_sales = calculate_trimmed_mean(sales, trim_percent=0.05)
+        
+        print(f"The 5% trimmed mean sales is: ${trimmed_mean_sales:.2f}")
+            </code></pre>
+            <h3>Visualising the Trimmed Mean</h3>
+            <p>
+                To better understand the impact of trimming, visualise the original dataset alongside the trimmed dataset. For example:
+            </p>
+            <pre><code>
+        import matplotlib.pyplot as plt
+        
+        # Original data
+        plt.hist(sales, bins=10, alpha=0.7, label="Original Data", color="skyblue")
+        
+        # Trimmed data
+        trimmed_data = sales.sort_values().iloc[int(len(sales) * 0.05):-int(len(sales) * 0.05)]
+        plt.hist(trimmed_data, bins=10, alpha=0.7, label="Trimmed Data", color="orange")
+        
+        plt.title("Trimmed Mean Visualisation")
+        plt.xlabel("Sales")
+        plt.ylabel("Frequency")
+        plt.legend()
+        plt.show()
+            </code></pre>
+            <h3>Key Insights from the Trimmed Mean</h3>
+            <ul>
+                <li>
+                    <strong>Reduced Impact of Outliers:</strong> The trimmed mean offers a more stable measure of central tendency when extreme values are present.
+                </li>
+                <li>
+                    <strong>Improved Robustness:</strong> By focusing on the central portion of the data, the trimmed mean reduces sensitivity to data anomalies.
+                </li>
+                <li>
+                    <strong>Applicability:</strong> Suitable for datasets where outliers are known to exist or where extreme values are not relevant to the analysis.
+                </li>
+            </ul>
+            <h3>Limitations of the Trimmed Mean</h3>
+            <ul>
+                <li>Trimming discards data, which may lead to a loss of valuable information if extreme values are meaningful.</li>
+                <li>Requires an appropriate choice of trimming percentage; too much trimming may distort the results.</li>
+                <li>Not ideal for datasets that do not contain significant outliers.</li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>
+                The trimmed mean is an effective tool for mitigating the effects of outliers while maintaining the integrity of the dataset’s central values. 
+                By carefully selecting the trimming percentage, analysts can achieve a robust measure of central tendency suitable for various analytical contexts.
+            </p>
             <p><strong>Result:</strong> Trimmed Mean Sales (5% trimmed) = <code>{{trimmed_mean_sales:.2f}}</code></p>
         </section>
+        
+        
+        <section>
+            <h2>Trimmed Mean</h2>
+            <p>
+                The <strong>Trimmed Mean</strong> is a robust measure of central tendency that reduces the impact of extreme outliers by excluding a specified percentage of the smallest and largest values from the dataset. 
+                It provides a more reliable average when the data contains extreme values that might skew the simple mean.
+            </p>
+            <h3>Why Use the Trimmed Mean?</h3>
+            <p>
+                The trimmed mean is particularly useful in situations where outliers can distort the analysis, such as:
+            </p>
+            <ul>
+                <li><strong>Sales Data:</strong> Removing unusually high or low sales figures that are not representative of the overall trend.</li>
+                <li><strong>Survey Responses:</strong> Discarding extreme values in Likert scale responses to get a balanced view of customer satisfaction.</li>
+                <li><strong>Financial Metrics:</strong> Eliminating extreme gains or losses in stock returns for more accurate performance evaluation.</li>
+            </ul>
+            <h3>Formula</h3>
+            <p>
+                The trimmed mean is calculated by removing <code>p%</code> of the smallest and largest values and then taking the mean of the remaining data. The process can be summarised as:
+            </p>
+            <pre><code>Trimmed Mean = Mean(values[int(n * p): -int(n * p)])</code></pre>
+            <p>
+                Where:
+            </p>
+            <ul>
+                <li><strong>p:</strong> Proportion of values to trim from each end.</li>
+                <li><strong>n:</strong> Total number of data points.</li>
+            </ul>
+            <h3>Python Example</h3>
+            <p>The following Python function demonstrates how to calculate the trimmed mean:</p>
+            <pre><code>
+        import pandas as pd
+        
+        # Define the function to calculate the trimmed mean
+        def calculate_trimmed_mean(values, trim_percent):
+            """
+            Calculate the trimmed mean of a dataset.
+        
+            Parameters:
+                values (Series): The data points (e.g., sales).
+                trim_percent (float): The percentage of data to trim from each end (e.g., 0.05 for 5%).
+        
+            Returns:
+                float: The trimmed mean of the dataset.
+            """
+            # Sort the values and remove the top and bottom percentages
+            trimmed_values = values.sort_values().iloc[int(len(values) * trim_percent):-int(len(values) * trim_percent)]
+            return trimmed_values.mean()
+        
+        # Example usage
+        sales = pd.Series([500, 600, 700, 10000, 300])  # Example sales data
+        trimmed_mean_sales = calculate_trimmed_mean(sales, trim_percent=0.05)
+        
+        print(f"The 5% trimmed mean sales is: ${trimmed_mean_sales:.2f}")
+            </code></pre>
+            <h3>Visualising the Trimmed Mean</h3>
+            <p>
+                To better understand the impact of trimming, visualise the original dataset alongside the trimmed dataset. For example:
+            </p>
+            <pre><code>
+        import matplotlib.pyplot as plt
+        
+        # Original data
+        plt.hist(sales, bins=10, alpha=0.7, label="Original Data", color="skyblue")
+        
+        # Trimmed data
+        trimmed_data = sales.sort_values().iloc[int(len(sales) * 0.05):-int(len(sales) * 0.05)]
+        plt.hist(trimmed_data, bins=10, alpha=0.7, label="Trimmed Data", color="orange")
+        
+        plt.title("Trimmed Mean Visualisation")
+        plt.xlabel("Sales")
+        plt.ylabel("Frequency")
+        plt.legend()
+        plt.show()
+            </code></pre>
+            <h3>Key Insights from the Trimmed Mean</h3>
+            <ul>
+                <li>
+                    <strong>Reduced Impact of Outliers:</strong> The trimmed mean offers a more stable measure of central tendency when extreme values are present.
+                </li>
+                <li>
+                    <strong>Improved Robustness:</strong> By focusing on the central portion of the data, the trimmed mean reduces sensitivity to data anomalies.
+                </li>
+                <li>
+                    <strong>Applicability:</strong> Suitable for datasets where outliers are known to exist or where extreme values are not relevant to the analysis.
+                </li>
+            </ul>
+            <h3>Limitations of the Trimmed Mean</h3>
+            <ul>
+                <li>Trimming discards data, which may lead to a loss of valuable information if extreme values are meaningful.</li>
+                <li>Requires an appropriate choice of trimming percentage; too much trimming may distort the results.</li>
+                <li>Not ideal for datasets that do not contain significant outliers.</li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>
+                The trimmed mean is an effective tool for mitigating the effects of outliers while maintaining the integrity of the dataset’s central values. 
+                By carefully selecting the trimming percentage, analysts can achieve a robust measure of central tendency suitable for various analytical contexts.
+            </p>
+            <p><strong>Result:</strong> Trimmed Mean Sales (5% trimmed) = <code>{{trimmed_mean_sales:.2f}}</code></p>
+        </section>
+        
         <section>
             <h2>Coefficient of Variation (CV)</h2>
             <p>
-                The <strong>Coefficient of Variation</strong> (CV) measures the relative variability of data as a percentage of the mean.
-                It is useful for comparing variability across different datasets, such as sales and expenses.
+                The <strong>Coefficient of Variation (CV)</strong> is a standardised measure of data variability relative to its mean. 
+                Unlike absolute measures like standard deviation, the CV expresses variability as a percentage, making it useful for comparing datasets with different scales or units.
             </p>
-            <pre>
-<code>
-cv_sales = data["Sales"].std() / data["Sales"].mean() * 100
-cv_expenses = data["Expenses"].std() / data["Expenses"].mean() * 100
-</code>
-            </pre>
+            <h3>Formula</h3>
             <p>
-                <strong>Results:</strong>
-                <ul>
-                    <li>Sales CV: <code>{{cv_sales:.2f}}%</code></li>
-                    <li>Expenses CV: <code>{{cv_expenses:.2f}}%</code></li>
-                </ul>
+                The Coefficient of Variation is calculated as:
             </p>
+            <pre><code>CV = (Standard Deviation / Mean) * 100</code></pre>
+            <p>Where:</p>
+            <ul>
+                <li><strong>Standard Deviation:</strong> Measures the dispersion of data points from the mean.</li>
+                <li><strong>Mean:</strong> The average of the dataset.</li>
+                <li><strong>100:</strong> Converts the result into a percentage for easier interpretation.</li>
+            </ul>
+            <h3>Why Use CV?</h3>
+            <p>The CV is particularly valuable when:</p>
+            <ul>
+                <li><strong>Comparing Datasets:</strong> It allows direct comparison of variability across datasets with different units or scales (e.g., sales in dollars vs. expenses in thousands).</li>
+                <li><strong>Evaluating Consistency:</strong> A lower CV indicates more consistency in the data, while a higher CV suggests greater variability.</li>
+                <li><strong>Risk Assessment:</strong> In fields like finance, a higher CV can signal greater volatility or risk in investments.</li>
+            </ul>
+            <h3>Python Example</h3>
+            <p>The following Python code demonstrates how to calculate the CV for sales and expenses:</p>
+            <pre><code>
+        # Import necessary libraries
+        import pandas as pd
+        
+        # Sample dataset
+        data = pd.DataFrame({
+            "Sales": [100, 200, 150, 300, 250],
+            "Expenses": [80, 90, 85, 95, 88]
+        })
+        
+        # Calculate Coefficient of Variation
+        cv_sales = data["Sales"].std() / data["Sales"].mean() * 100
+        cv_expenses = data["Expenses"].std() / data["Expenses"].mean() * 100
+        
+        print(f"Sales CV: {cv_sales:.2f}%")
+        print(f"Expenses CV: {cv_expenses:.2f}%")
+            </code></pre>
+            <h3>Interpreting CV Results</h3>
+            <p>The CV results provide insight into the relative variability of datasets:</p>
+            <ul>
+                <li>
+                    <strong>Sales CV:</strong> <code>{{cv_sales:.2f}}%</code> – Indicates how much variability exists in sales relative to the average sales value.
+                </li>
+                <li>
+                    <strong>Expenses CV:</strong> <code>{{cv_expenses:.2f}}%</code> – Indicates how consistent expenses are relative to their mean.
+                </li>
+            </ul>
+            <p>
+                For example, if the sales CV is significantly higher than the expenses CV, it suggests that sales are more volatile compared to expenses.
+            </p>
+            <h3>Visualising CV</h3>
+            <p>
+                Visualisation can help students better understand the variability represented by the CV. Below is an example of how to visualise data variability using bar charts:
+            </p>
+            <pre><code>
+        import matplotlib.pyplot as plt
+        
+        # Visualise variability using bar charts
+        categories = ["Sales", "Expenses"]
+        cv_values = [cv_sales, cv_expenses]
+        
+        plt.bar(categories, cv_values, color="skyblue")
+        plt.title("Coefficient of Variation (CV)")
+        plt.ylabel("CV (%)")
+        plt.xlabel("Category")
+        plt.show()
+            </code></pre>
+            <h3>When to Use the Coefficient of Variation</h3>
+            <p>
+                The CV is best suited for:
+            </p>
+            <ul>
+                <li><strong>Comparing Variability:</strong> Across datasets with different scales or units.</li>
+                <li><strong>Evaluating Risk:</strong> In financial portfolios or investment analysis.</li>
+                <li><strong>Assessing Consistency:</strong> In manufacturing, quality control, or process monitoring.</li>
+            </ul>
+            <h3>Limitations of CV</h3>
+            <p>
+                While the CV is a powerful tool, it has limitations:
+            </p>
+            <ul>
+                <li>
+                    The CV is sensitive to low mean values. When the mean approaches zero, the CV can become extremely large or undefined.
+                </li>
+                <li>
+                    It may not be suitable for datasets with negative values, as the CV assumes positive values for meaningful interpretation.
+                </li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>
+                The Coefficient of Variation is a versatile tool for comparing variability across datasets. By standardising variability as a percentage of the mean, 
+                the CV provides a meaningful measure for understanding consistency and risk in data. However, analysts must be mindful of its limitations, 
+                particularly in datasets with low or negative mean values.
+            </p>
+            <p><strong>Results:</strong></p>
+            <ul>
+                <li>Sales CV: <code>{{cv_sales:.2f}}%</code></li>
+                <li>Expenses CV: <code>{{cv_expenses:.2f}}%</code></li>
+            </ul>
         </section>
+        
+
         <section>
             <h2>Visualising Data</h2>
             <p>
-                Visualisations provide insights into data distributions and variability.
-                The following visualisations are generated:
+                Data visualisation is a critical step in exploratory data analysis (EDA). It allows analysts to uncover patterns, trends, and anomalies 
+                that might not be evident in raw data. Visualisations also make data more accessible to stakeholders by presenting complex metrics 
+                in an intuitive and easy-to-understand format.
             </p>
-            <h3>Density Plot</h3>
-            <p>The density plot compares the distributions of sales and expenses.</p>
-            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Measures%20of%20Central%20Tendency%20and%20Dispersion/output/Density_Plot.png" alt="Density Plot for Sales and Expenses" style="width:100%;max-width:800px;">
-            <h3>Boxplot</h3>
-            <p>The boxplot illustrates sales distribution across different regions.</p>
-            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Measures%20of%20Central%20Tendency%20and%20Dispersion/output/Sales_Boxplot.png" alt="Sales Boxplot by Region" style="width:100%;max-width:800px;">
+            <h3>Why Use Visualisations?</h3>
+            <p>Visualising data provides several benefits, including:</p>
+            <ul>
+                <li><strong>Understanding Distribution:</strong> Identify whether data follows a normal distribution, is skewed, or contains multiple peaks.</li>
+                <li><strong>Identifying Outliers:</strong> Spot values that deviate significantly from the rest of the dataset.</li>
+                <li><strong>Comparing Groups:</strong> Analyse differences across categories or groups, such as regions or demographics.</li>
+                <li><strong>Communicating Insights:</strong> Present findings to stakeholders in a clear and impactful way.</li>
+            </ul>
         </section>
+        
+        <section>
+            <h3>Density Plot</h3>
+            <p>
+                A density plot is a smoothed version of a histogram that shows the probability density of a variable. It is particularly useful for visualising 
+                the overall shape of a distribution and identifying peaks, valleys, and skewness. Density plots are often overlaid to compare multiple distributions.
+            </p>
+            <p>The density plot below compares the distributions of sales and expenses:</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Measures%20of%20Central%20Tendency%20and%20Dispersion/output/Density_Plot.png" alt="Density Plot for Sales and Expenses" style="width:100%;max-width:800px;">
+            <h4>Python Example: Creating a Density Plot</h4>
+            <pre><code>
+        # Import necessary libraries
+        import seaborn as sns
+        import matplotlib.pyplot as plt
+        
+        # Sample data
+        sales = [100, 200, 150, 300, 250]
+        expenses = [80, 90, 85, 95, 88]
+        
+        # Create density plots
+        sns.kdeplot(sales, fill=True, alpha=0.5, label="Sales", color="blue")
+        sns.kdeplot(expenses, fill=True, alpha=0.5, label="Expenses", color="orange")
+        
+        # Add labels and legend
+        plt.title("Density Plot: Sales vs. Expenses")
+        plt.xlabel("Values")
+        plt.ylabel("Density")
+        plt.legend()
+        plt.show()
+            </code></pre>
+            <h4>Interpretation</h4>
+            <p>
+                The density plot shows how sales and expenses are distributed. Overlapping areas indicate similar values, while separate peaks highlight differences 
+                between the datasets. This visualisation can reveal whether one variable is more concentrated or dispersed than another.
+            </p>
+        </section>
+        
+        <section>
+            <h3>Boxplot</h3>
+            <p>
+                A boxplot provides a visual summary of data distribution using a five-number summary (minimum, Q1, median, Q3, maximum). 
+                It also highlights potential outliers, making it a valuable tool for comparing groups or categories.
+            </p>
+            <p>The boxplot below illustrates the distribution of sales across different regions:</p>
+            <img src="/Business-Analytics-Code/Lecture%202/Advanced%20Measures%20of%20Central%20Tendency%20and%20Dispersion/output/Sales_Boxplot.png" alt="Sales Boxplot by Region" style="width:100%;max-width:800px;">
+            <h4>Python Example: Creating a Boxplot</h4>
+            <pre><code>
+        # Import necessary libraries
+        import seaborn as sns
+        import matplotlib.pyplot as plt
+        import pandas as pd
+        
+        # Sample data
+        data = pd.DataFrame({
+            "Region": ["North", "North", "South", "South", "East", "East", "West", "West"],
+            "Sales": [500, 550, 600, 620, 450, 480, 700, 750]
+        })
+        
+        # Create boxplot
+        sns.boxplot(x="Region", y="Sales", data=data, palette="Set3")
+        
+        # Add labels and title
+        plt.title("Sales Distribution by Region")
+        plt.xlabel("Region")
+        plt.ylabel("Sales")
+        plt.show()
+            </code></pre>
+            <h4>Interpretation</h4>
+            <p>
+                The boxplot provides insights into sales performance across regions:
+            </p>
+            <ul>
+                <li><strong>Median:</strong> The line inside each box shows the central tendency of sales for each region.</li>
+                <li><strong>Interquartile Range (IQR):</strong> The height of each box shows the spread of the middle 50% of values.</li>
+                <li><strong>Outliers:</strong> Data points beyond the whiskers indicate unusually high or low sales that warrant further investigation.</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h3>When to Use These Visualisations</h3>
+            <p>
+                Density plots and boxplots are best used in the following scenarios:
+            </p>
+            <ul>
+                <li><strong>Exploratory Data Analysis (EDA):</strong> Understand the overall shape and variability of your data.</li>
+                <li><strong>Comparative Analysis:</strong> Compare distributions or categories, such as regions or time periods.</li>
+                <li><strong>Outlier Detection:</strong> Identify extreme values that may impact analysis or require further investigation.</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h3>Conclusion</h3>
+            <p>
+                Visualisations like density plots and boxplots are essential tools for understanding data distributions and variability. 
+                They not only provide a clearer picture of the data but also support effective decision-making by uncovering patterns and anomalies. 
+                Analysts can leverage these visualisations to communicate findings, identify outliers, and make data-driven recommendations.
+            </p>
+        </section>
+        
+        
         <section>
             <h2>Conclusion</h2>
             <p>
-                Advanced descriptive measures like weighted mean and trimmed mean provide deeper insights into central tendencies,
-                while the coefficient of variation highlights variability in data. Visualisations complement these metrics,
-                enabling a comprehensive understanding of data distributions and relationships.
+                Advanced descriptive measures, such as the <strong>weighted mean</strong> and <strong>trimmed mean</strong>, offer nuanced insights into central tendencies, 
+                accounting for factors like relative importance and the influence of outliers. These metrics move beyond simple averages, providing a more accurate reflection of data behaviour in complex scenarios.
+            </p>
+            <p>
+                The <strong>coefficient of variation (CV)</strong> adds a crucial layer to data analysis by quantifying variability relative to the mean. 
+                This standardised metric is particularly powerful when comparing datasets with different units or scales, enabling meaningful cross-comparisons.
+            </p>
+            <p>
+                Complementing these measures, visualisation techniques such as <strong>density plots</strong> and <strong>boxplots</strong> bring data to life. 
+                These tools not only illustrate distribution characteristics but also highlight patterns, outliers, and relationships that are not immediately apparent in numerical summaries. 
+                By making data accessible and interpretable, visualisations bridge the gap between analysis and actionable insights.
+            </p>
+            <p>
+                Together, these methods equip analysts with a comprehensive toolkit for exploring, summarising, and communicating data effectively. 
+                Their application is critical in a wide range of fields, from business analytics and market research to finance and healthcare.
+            </p>
+            <h3>Key Takeaways</h3>
+            <ul>
+                <li>
+                    Advanced measures like the <strong>weighted mean</strong> provide more representative averages when dealing with data points of unequal importance.
+                </li>
+                <li>
+                    The <strong>trimmed mean</strong> mitigates the impact of outliers, ensuring robust central tendency measures in skewed datasets.
+                </li>
+                <li>
+                    The <strong>coefficient of variation</strong> is an essential metric for comparing variability across datasets with differing units or scales.
+                </li>
+                <li>
+                    <strong>Data visualisations</strong> enhance interpretability, aiding in the detection of trends, anomalies, and relationships.
+                </li>
+            </ul>
+            <p>
+                In summary, the integration of advanced descriptive measures and visualisation techniques empowers analysts to make informed, data-driven decisions. 
+                By embracing these tools, organisations can uncover deeper insights, optimise strategies, and drive meaningful outcomes in their respective domains.
             </p>
         </section>
+        
     </main>
 </body>
 </html>
