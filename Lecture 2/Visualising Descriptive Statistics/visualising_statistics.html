@@ -24,87 +24,448 @@
                 <li><strong>Rug Plots:</strong> Combine density curves with detailed data points.</li>
             </ul>
         </section>
+        
         <section>
             <h2>Heatmaps</h2>
             <p>
-                A heatmap provides a colour-coded representation of the correlation matrix, indicating the strength and direction of relationships between numeric variables.
+                A <strong>heatmap</strong> is a visualisation tool that uses colour to represent data values in a matrix format. In the context of correlation analysis, 
+                a heatmap provides a colour-coded representation of the correlation matrix, illustrating the strength and direction of relationships between numeric variables.
+            </p>
+            <h3>Why Use Heatmaps?</h3>
+            <p>Heatmaps are invaluable for:</p>
+            <ul>
+                <li><strong>Identifying Relationships:</strong> Quickly spotting strong positive or negative correlations between variables.</li>
+                <li><strong>Dimensionality Reduction:</strong> Highlighting redundant variables (e.g., highly correlated variables) to streamline analysis.</li>
+                <li><strong>Exploratory Data Analysis (EDA):</strong> Providing an intuitive overview of data relationships at an early analysis stage.</li>
+            </ul>
+            <h3>Understanding the Correlation Matrix</h3>
+            <p>
+                The correlation matrix is a tabular representation of correlation coefficients between variables. Key aspects include:
+            </p>
+            <ul>
+                <li><strong>Correlation Coefficient:</strong> A value between -1 and 1 indicating the relationship's strength and direction:
+                    <ul>
+                        <li><strong>-1:</strong> Perfect negative correlation (as one variable increases, the other decreases).</li>
+                        <li><strong>0:</strong> No correlation.</li>
+                        <li><strong>1:</strong> Perfect positive correlation (both variables move in the same direction).</li>
+                    </ul>
+                </li>
+                <li><strong>Diagonal Values:</strong> Always 1, as they represent a variable's correlation with itself.</li>
+            </ul>
+            <h3>Python Example: Generating a Heatmap</h3>
+            <p>
+                The following Python code generates a heatmap to visualise the correlation matrix:
             </p>
             <pre><code>
-# Generate the correlation matrix
-correlation_matrix = data.corr()
-
-# Create a heatmap
-sns.heatmap(
-    correlation_matrix, 
-    annot=True, 
-    cmap="coolwarm", 
-    vmin=-1, 
-    vmax=1, 
-    linewidths=0.5
-)
-plt.title("Correlation Heatmap")
-plt.savefig("Correlation_Heatmap.png")
-plt.close()
+        # Import necessary libraries
+        import seaborn as sns
+        import matplotlib.pyplot as plt
+        
+        # Generate the correlation matrix
+        correlation_matrix = data.corr()
+        
+        # Create a heatmap
+        sns.heatmap(
+            correlation_matrix, 
+            annot=True,  # Display correlation values on the heatmap
+            cmap="coolwarm",  # Use a diverging colour palette
+            vmin=-1, vmax=1,  # Set colour scale limits
+            linewidths=0.5  # Add gridlines for better readability
+        )
+        
+        # Add a title and save the heatmap
+        plt.title("Correlation Heatmap")
+        plt.savefig("Correlation_Heatmap.png")
+        plt.close()
             </code></pre>
             <h3>Visualisation Example</h3>
+            <p>
+                The heatmap below visualises correlations between numeric variables in a dataset:
+            </p>
             <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Heatmaps/output/Correlation_Heatmap.png" alt="Correlation Heatmap" style="width:100%;max-width:800px;">
+            <h3>Interpreting the Heatmap</h3>
+            <p>
+                When analysing a heatmap, focus on the following:
+            </p>
+            <ul>
+                <li>
+                    <strong>Strong Positive Correlations (e.g., 0.7 to 1):</strong> Variables that increase together. For instance, "Advertising Spend" and "Sales" may show a high correlation.
+                </li>
+                <li>
+                    <strong>Strong Negative Correlations (e.g., -0.7 to -1):</strong> Variables that move inversely. For example, "Discount Percentage" and "Profit Margin."
+                </li>
+                <li>
+                    <strong>Weak Correlations (e.g., -0.3 to 0.3):</strong> Variables with little to no relationship, suggesting independent behaviours.
+                </li>
+                <li>
+                    <strong>Clusters of Correlation:</strong> Groups of variables with high correlations, indicating potential redundancy.
+                </li>
+            </ul>
+            <h3>Applications of Heatmaps in Business Analytics</h3>
+            <p>
+                Heatmaps play a critical role in various domains of business analytics:
+            </p>
+            <ul>
+                <li><strong>Marketing Analytics:</strong> Identify relationships between advertising spend, customer acquisition, and revenue.</li>
+                <li><strong>Financial Analysis:</strong> Assess correlations between asset classes, aiding in portfolio diversification.</li>
+                <li><strong>Operations Management:</strong> Analyse how variables like production cost, defects, and output interact.</li>
+                <li><strong>Human Resources:</strong> Explore relationships between employee performance metrics and engagement surveys.</li>
+            </ul>
+            <h3>Limitations of Heatmaps</h3>
+            <p>
+                While heatmaps are powerful, they have limitations:
+            </p>
+            <ul>
+                <li><strong>Interpretation Complexity:</strong> Heatmaps may become cluttered and hard to interpret with too many variables.</li>
+                <li><strong>Correlation ≠ Causation:</strong> A strong correlation does not imply a cause-and-effect relationship.</li>
+                <li><strong>Linear Relationships Only:</strong> Correlation measures linear relationships and may not capture non-linear dependencies.</li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>
+                Heatmaps are an indispensable tool for visualising relationships between variables. By providing a clear and intuitive overview of correlations, 
+                they enable analysts to identify patterns, assess relationships, and make informed decisions. However, it is crucial to complement heatmaps 
+                with other analyses to avoid misinterpreting correlations as causation.
+            </p>
         </section>
+        
+        
         <section>
             <h2>Histograms</h2>
             <p>
-                Histograms depict the frequency distribution of a variable, with the option to overlay a density curve for smoother visualisation.
+                A <strong>histogram</strong> is a graphical representation of the distribution of a dataset. It divides the range of data into intervals (or bins) and counts 
+                the number of data points within each interval, displaying the frequencies as bars. Histograms help analysts understand the shape, spread, and central tendency of the data.
+            </p>
+            <h3>Why Use Histograms?</h3>
+            <p>
+                Histograms are particularly useful for:
+            </p>
+            <ul>
+                <li><strong>Understanding Distribution:</strong> Identifying whether the data is normally distributed, skewed, or multimodal.</li>
+                <li><strong>Detecting Outliers:</strong> Spotting intervals with unusually high or low frequencies.</li>
+                <li><strong>Assessing Variability:</strong> Observing the spread of data across intervals.</li>
+                <li><strong>Comparing Groups:</strong> Visualising and comparing distributions of subsets of the data (e.g., by region or demographic).</li>
+            </ul>
+            <h3>Python Example: Creating a Histogram</h3>
+            <p>
+                The following Python code generates a histogram of age data with an overlaid density curve for smoother visualisation:
             </p>
             <pre><code>
-# Generate histogram with density
-sns.histplot(data["Age"], bins=10, kde=True, color="blue")
-plt.title("Age Distribution")
-plt.savefig("Age_Histogram.png")
-plt.close()
+        # Import necessary libraries
+        import seaborn as sns
+        import matplotlib.pyplot as plt
+        import pandas as pd
+        
+        # Sample data
+        data = {"Age": [25, 30, 35, 40, 45, 50, 30, 35, 45, 50, 55]}
+        ages = pd.Series(data["Age"])
+        
+        # Generate histogram with density curve
+        sns.histplot(ages, bins=10, kde=True, color="blue")
+        plt.title("Age Distribution")
+        plt.xlabel("Age")
+        plt.ylabel("Frequency")
+        plt.savefig("Age_Histogram.png")
+        plt.close()
             </code></pre>
             <h3>Customisation Examples</h3>
-            <p>The following histograms demonstrate various binning strategies:</p>
+            <p>
+                The choice of bin size can significantly impact the interpretability of a histogram. Below are examples demonstrating the effect of different binning strategies:
+            </p>
             <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Histogram/output/Age_Default_Histogram.png" alt="Default Histogram" style="width:100%;max-width:800px;">
+            <p><strong>Default binning:</strong> Provides a balanced overview of the data distribution, suitable for general analysis.</p>
             <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Histogram/output/Age_20Bins_Histogram.png" alt="Histogram with 20 Bins" style="width:100%;max-width:800px;">
+            <p><strong>20 bins:</strong> Adds granularity, useful for identifying subtle patterns or gaps in the data.</p>
             <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Histogram/output/Age_50Bins_Histogram.png" alt="Histogram with 50 Bins" style="width:100%;max-width:800px;">
+            <p><strong>50 bins:</strong> Highly granular but may overemphasise noise, making it less effective for broader trends.</p>
+            <h3>Interpreting Histograms</h3>
+            <p>
+                Histograms provide valuable insights into the data:
+            </p>
+            <ul>
+                <li>
+                    <strong>Shape:</strong> The overall shape (e.g., normal, skewed, or bimodal) reveals underlying patterns in the data distribution.
+                </li>
+                <li>
+                    <strong>Spread:</strong> The width of the histogram indicates variability, with wider histograms representing more diverse datasets.
+                </li>
+                <li>
+                    <strong>Central Tendency:</strong> The position of the peak suggests where most data points are concentrated.
+                </li>
+                <li>
+                    <strong>Outliers:</strong> Isolated bars on either end of the histogram highlight extreme values.
+                </li>
+            </ul>
+            <h3>When to Use Histograms</h3>
+            <p>
+                Histograms are particularly effective during the <strong>exploratory data analysis (EDA)</strong> phase, where understanding data distributions is crucial. 
+                They are well-suited for:
+            </p>
+            <ul>
+                <li><strong>Univariate Analysis:</strong> Examining the distribution of a single variable.</li>
+                <li><strong>Outlier Detection:</strong> Identifying extreme values that could affect the analysis.</li>
+                <li><strong>Comparative Analysis:</strong> Comparing distributions across groups or categories.</li>
+                <li><strong>Data Validation:</strong> Verifying that data behaves as expected (e.g., no unexpected gaps or peaks).</li>
+            </ul>
+            <h3>Limitations</h3>
+            <p>
+                While histograms are powerful tools, they have limitations:
+            </p>
+            <ul>
+                <li>
+                    <strong>Sensitivity to Bin Size:</strong> Too few bins oversimplify the data, while too many bins may overemphasise noise.
+                </li>
+                <li>
+                    <strong>Limited to One Variable:</strong> Histograms are univariate and do not capture relationships between variables.
+                </li>
+                <li>
+                    <strong>Loss of Detail:</strong> Binning groups data, potentially hiding individual data points or finer patterns.
+                </li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>
+                Histograms are essential tools for understanding data distributions. By adjusting bin sizes and overlaying density curves, 
+                analysts can customise histograms to uncover meaningful patterns and gain deeper insights into their data. However, 
+                like all visualisations, histograms should be used alongside other techniques to provide a comprehensive understanding of the dataset.
+            </p>
         </section>
+        
+        
         <section>
             <h2>Pair Plots</h2>
             <p>
-                Pair plots display pairwise relationships between variables in a dataset, helping to identify correlations and clusters. Adding a hue allows categorisation based on a specific variable.
+                A <strong>pair plot</strong> visualises pairwise relationships between multiple variables in a dataset. By plotting scatterplots for numeric variables 
+                and density/histograms along the diagonal, pair plots allow analysts to explore relationships, trends, clusters, and correlations in a single visualisation.
+            </p>
+            <h3>Why Use Pair Plots?</h3>
+            <p>Pair plots are useful for:</p>
+            <ul>
+                <li><strong>Exploring Correlations:</strong> Identify relationships between pairs of variables (e.g., sales vs. advertising spend).</li>
+                <li><strong>Detecting Clusters:</strong> Highlight groupings in data, especially when paired with a categorical variable for colour coding.</li>
+                <li><strong>Analysing Multivariate Data:</strong> Understand how multiple variables interact with each other.</li>
+            </ul>
+            <h3>Components of a Pair Plot</h3>
+            <ul>
+                <li><strong>Scatterplots:</strong> Plotted off-diagonal, showing the relationship between two variables.</li>
+                <li><strong>Diagonal:</strong> Displays a density curve or histogram for each individual variable, indicating its distribution.</li>
+                <li><strong>Hue:</strong> A categorical variable used to differentiate data points by colour, revealing group-level patterns.</li>
+            </ul>
+            <h3>Python Example: Generating a Pair Plot</h3>
+            <p>
+                The following Python code generates a pair plot for a dataset containing sales, advertising spend, and profit margin, with regions as a grouping variable:
             </p>
             <pre><code>
-# Generate pair plot
-sns.pairplot(data, hue="Region", diag_kind="kde")
-plt.savefig("Pair_Plot_With_Hue.png")
-plt.close()
+        # Import necessary libraries
+        import seaborn as sns
+        import pandas as pd
+        import matplotlib.pyplot as plt
+        
+        # Sample dataset
+        data = pd.DataFrame({
+            "Sales": [500, 600, 400, 800, 700],
+            "Advertising Spend": [200, 300, 150, 400, 350],
+            "Profit Margin": [20, 25, 15, 30, 28],
+            "Region": ["North", "South", "East", "West", "North"]
+        })
+        
+        # Generate pair plot
+        sns.pairplot(data, hue="Region", diag_kind="kde", palette="Set2")
+        
+        # Save the plot
+        plt.savefig("Pair_Plot_With_Hue.png")
+        plt.close()
             </code></pre>
             <h3>Visualisation Example</h3>
-            <p>The pair plot below highlights relationships between key metrics, categorised by region:</p>
+            <p>
+                The pair plot below visualises relationships between sales, advertising spend, and profit margin, grouped by region:
+            </p>
             <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Pair%20Plots/output/Pair_Plot_With_Hue.png" alt="Pair Plot with Hue" style="width:100%;max-width:800px;">
+            <h3>Interpreting Pair Plots</h3>
+            <p>
+                Pair plots can reveal important patterns and insights, such as:
+            </p>
+            <ul>
+                <li><strong>Correlation:</strong> Positive, negative, or no correlation between variables is visible as linear, inverse, or random scatter patterns, respectively.</li>
+                <li><strong>Clusters:</strong> Groupings of data points in scatterplots can indicate natural segmentation or relationships, especially with categorical grouping (hue).</li>
+                <li><strong>Variable Distributions:</strong> The diagonal density plots reveal whether a variable is normally distributed, skewed, or bimodal.</li>
+                <li><strong>Outliers:</strong> Isolated points in scatterplots indicate potential outliers that may need further investigation.</li>
+            </ul>
+            <h3>Applications of Pair Plots</h3>
+            <p>
+                Pair plots are widely used in business analytics and other domains:
+            </p>
+            <ul>
+                <li><strong>Customer Segmentation:</strong> Explore relationships between customer demographics and behaviours to define meaningful segments.</li>
+                <li><strong>Marketing Analytics:</strong> Understand the interaction between advertising spend, sales, and profit margins to optimise campaigns.</li>
+                <li><strong>Exploratory Data Analysis (EDA):</strong> Provide a quick overview of multivariate relationships in a dataset.</li>
+                <li><strong>Machine Learning:</strong> Identify potential features and relationships for building predictive models.</li>
+            </ul>
+            <h3>Limitations of Pair Plots</h3>
+            <p>
+                While pair plots are powerful, they do have some limitations:
+            </p>
+            <ul>
+                <li><strong>Scalability:</strong> Pair plots become cluttered and hard to interpret with too many variables.</li>
+                <li><strong>Categorical Variables:</strong> Pair plots are best suited for numeric data and may not fully capture the relationships involving categorical variables.</li>
+                <li><strong>Static Nature:</strong> Static visualisations may not allow deeper interactivity needed for exploring large datasets dynamically.</li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>
+                Pair plots are an essential tool for analysing multivariate datasets. They provide a comprehensive overview of relationships, distributions, and clusters within the data, 
+                making them invaluable for exploratory data analysis and feature engineering. By customising pair plots with hues and diagonal density plots, analysts can derive meaningful insights 
+                and communicate data-driven stories effectively.
+            </p>
         </section>
+        
+        
         <section>
             <h2>Rug Plots</h2>
             <p>
-                Rug plots combine density curves with individual data points, offering a granular view of data distributions along an axis.
+                A <strong>rug plot</strong> is a visualisation technique that displays individual data points as small ticks along an axis. 
+                When combined with a density curve, rug plots provide a detailed and granular view of data distributions. 
+                They are particularly useful for identifying patterns, clusters, and outliers that may not be immediately visible in other visualisations.
             </p>
+            <h3>Why Use Rug Plots?</h3>
+            <p>Rug plots are valuable for:</p>
+            <ul>
+                <li><strong>Granularity:</strong> Highlighting the exact position of individual data points within a distribution.</li>
+                <li><strong>Complementing Density Plots:</strong> Providing additional context to density curves by showing raw data points.</li>
+                <li><strong>Outlier Detection:</strong> Identifying isolated points that may represent outliers or anomalies.</li>
+            </ul>
+            <h3>Python Example: Creating a Rug Plot</h3>
+            <p>The following Python code generates a rug plot combined with a density curve to visualise the distribution of spending scores:</p>
             <pre><code>
-# Create rug plot
-sns.kdeplot(data["SpendingScore"], fill=True, alpha=0.6, color="blue")
-sns.rugplot(data["SpendingScore"], color="red", height=0.1)
-plt.title("Rug Plot and Density for Spending Score")
-plt.savefig("SpendingScore_Rug_Plot.png")
-plt.close()
+        # Import necessary libraries
+        import seaborn as sns
+        import matplotlib.pyplot as plt
+        
+        # Sample data
+        data = {"SpendingScore": [20, 30, 40, 50, 60, 70, 80, 90, 50, 55, 45]}
+        spending_scores = pd.Series(data["SpendingScore"])
+        
+        # Create density plot with a rug plot
+        sns.kdeplot(spending_scores, fill=True, alpha=0.6, color="blue", label="Density Curve")
+        sns.rugplot(spending_scores, color="red", height=0.1, label="Rug Plot")
+        
+        # Add title and legend
+        plt.title("Rug Plot and Density for Spending Score")
+        plt.xlabel("Spending Score")
+        plt.ylabel("Density")
+        plt.legend()
+        plt.savefig("SpendingScore_Rug_Plot.png")
+        plt.close()
             </code></pre>
             <h3>Visualisation Example</h3>
-            <p>The rug plot below illustrates the distribution of spending scores:</p>
+            <p>The rug plot below visualises the distribution of spending scores:</p>
             <img src="/Business-Analytics-Code/Lecture%202/Visualising%20Descriptive%20Statistics/Rug%20Plots/output/SpendingScore_Rug_Plot.png" alt="Spending Score Rug Plot" style="width:100%;max-width:800px;">
+            <h3>Interpreting Rug Plots</h3>
+            <p>
+                Rug plots provide detailed insights into the data distribution:
+            </p>
+            <ul>
+                <li>
+                    <strong>Clusters:</strong> Areas with many overlapping ticks indicate clusters or densely populated regions of the dataset.
+                </li>
+                <li>
+                    <strong>Outliers:</strong> Isolated ticks far from the main data cluster highlight potential outliers or unusual values.
+                </li>
+                <li>
+                    <strong>Density Curve Context:</strong> The density curve provides a smoothed summary, while the rug plot ensures no granular detail is lost.
+                </li>
+            </ul>
+            <h3>Applications of Rug Plots</h3>
+            <p>
+                Rug plots are particularly useful in the following scenarios:
+            </p>
+            <ul>
+                <li><strong>Marketing Analytics:</strong> Explore customer segmentation by visualising individual spending patterns.</li>
+                <li><strong>Financial Analysis:</strong> Identify anomalous transaction amounts in financial datasets.</li>
+                <li><strong>Operations Management:</strong> Analyse defect rates or production quality distributions.</li>
+                <li><strong>Exploratory Data Analysis (EDA):</strong> Combine with histograms or density plots for a comprehensive view of data distributions.</li>
+            </ul>
+            <h3>Limitations of Rug Plots</h3>
+            <p>
+                While rug plots are effective for small datasets, they have limitations:
+            </p>
+            <ul>
+                <li>
+                    <strong>Overcrowding:</strong> Rug plots can become cluttered and hard to interpret with large datasets.
+                </li>
+                <li>
+                    <strong>Static Nature:</strong> Without interactivity, rug plots may struggle to convey insights in very detailed datasets.
+                </li>
+                <li>
+                    <strong>Univariate Focus:</strong> Rug plots are limited to visualising one variable at a time.
+                </li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>
+                Rug plots are a valuable addition to the analyst’s toolkit for visualising data distributions with granularity and precision. 
+                When combined with density plots, they provide a comprehensive view of both the smoothed distribution and the raw data points. 
+                However, care must be taken to ensure the dataset is of manageable size to avoid cluttering the visualisation. 
+                Rug plots are most effective when used alongside other visualisations for exploratory data analysis and anomaly detection.
+            </p>
         </section>
+        
+        
         <section>
             <h2>Conclusion</h2>
             <p>
-                Visualisation techniques provide powerful tools for interpreting descriptive statistics. By using heatmaps, histograms, pair plots, and rug plots, analysts can gain deeper insights into relationships, distributions, and trends within datasets.
+                Data visualisation is a cornerstone of descriptive statistics and exploratory data analysis (EDA). 
+                By transforming raw data into clear and interpretable visuals, techniques such as <strong>heatmaps</strong>, <strong>histograms</strong>, <strong>pair plots</strong>, and <strong>rug plots</strong> empower analysts to uncover patterns, trends, and relationships that may not be apparent in numerical summaries alone.
+            </p>
+            <p>
+                Each visualisation method serves a distinct purpose:
+            </p>
+            <ul>
+                <li><strong>Heatmaps:</strong> Simplify complex relationships between variables by using colour to highlight correlations and patterns.</li>
+                <li><strong>Histograms:</strong> Provide an intuitive overview of data distributions, revealing shapes, spread, and potential outliers.</li>
+                <li><strong>Pair Plots:</strong> Enable multivariate analysis, uncovering relationships, clusters, and correlations across multiple variables.</li>
+                <li><strong>Rug Plots:</strong> Add granularity to density plots, offering precise insights into individual data points.</li>
+            </ul>
+            <p>
+                Together, these techniques allow analysts to:
+            </p>
+            <ul>
+                <li>Identify key patterns and relationships in data.</li>
+                <li>Detect outliers and anomalies that may require further investigation.</li>
+                <li>Communicate insights effectively through clear and engaging visuals.</li>
+            </ul>
+            <h3>Integrating Visualisation into the Analytical Process</h3>
+            <p>
+                Visualisations are not standalone tools; they are integral to the broader analytical process. 
+                They play a critical role in:
+            </p>
+            <ul>
+                <li><strong>Exploratory Data Analysis (EDA):</strong> Understanding the dataset before applying statistical or machine learning models.</li>
+                <li><strong>Feature Engineering:</strong> Identifying and selecting variables for predictive modelling based on visual patterns.</li>
+                <li><strong>Decision-Making:</strong> Presenting data-driven recommendations to stakeholders in a visually compelling format.</li>
+            </ul>
+            <h3>Limitations and Best Practices</h3>
+            <p>
+                While visualisation techniques are powerful, they have limitations:
+            </p>
+            <ul>
+                <li><strong>Overinterpretation:</strong> Visualisations can sometimes suggest patterns that are coincidental rather than meaningful.</li>
+                <li><strong>Scalability:</strong> Some methods, like pair plots or rug plots, may become cluttered with large datasets.</li>
+                <li><strong>Subjectivity:</strong> Choice of colours, scales, and bin sizes can influence perception, requiring careful design to avoid bias.</li>
+            </ul>
+            <p>
+                To maximise the effectiveness of visualisations:
+            </p>
+            <ul>
+                <li>Choose the appropriate technique for the data and analysis goals.</li>
+                <li>Combine multiple visualisations for a comprehensive understanding of the dataset.</li>
+                <li>Ensure clarity and simplicity in design to avoid misinterpretation.</li>
+            </ul>
+            <h3>Final Thoughts</h3>
+            <p>
+                Visualisation techniques are indispensable tools for modern data analysis. By effectively leveraging heatmaps, histograms, pair plots, and rug plots, analysts can 
+                enhance their understanding of datasets, communicate findings effectively, and make data-driven decisions with confidence. 
+                When used thoughtfully and in conjunction with other analytical techniques, these visualisations unlock deeper insights and pave the way for meaningful outcomes.
             </p>
         </section>
+        
+
     </main>
 </body>
 </html>

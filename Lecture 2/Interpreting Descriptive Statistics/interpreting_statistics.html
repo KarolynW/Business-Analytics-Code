@@ -23,16 +23,51 @@
         <section>
             <h2>Step 1: Exploring Sales Distribution</h2>
             <p>
-                In this step, we calculate basic descriptive statistics for monthly sales, such as mean, median, variance, and standard deviation. 
-                These metrics highlight variability and identify performance trends.
+                In this step, we calculate basic descriptive statistics for monthly sales, such as mean, median, range, variance, and standard deviation. 
+                These metrics provide insight into the central tendency, variability, and overall distribution of sales performance across stores.
+            </p>
+            <h3>Key Metrics</h3>
+            <ul>
+                <li><strong>Mean Monthly Sales:</strong> $16,688.00</li>
+                <li><strong>Median Monthly Sales:</strong> $16,650.00</li>
+                <li><strong>Range of Monthly Sales:</strong> $14,900.00</li>
+                <li><strong>Variance of Monthly Sales:</strong> $15,893,456.00</li>
+                <li><strong>Standard Deviation of Monthly Sales:</strong> $3,986.66</li>
+            </ul>
+            <h3>Analysis</h3>
+            <p>
+                - <strong>Variability:</strong> The standard deviation of $3,986.66 indicates high variability in sales performance, highlighting significant differences between stores.<br>
+                - <strong>Skewness:</strong> The similarity between the mean ($16,688.00) and median ($16,650.00) indicates minimal skewness in the sales data.
+            </p>
+            <p>
+                <strong>Top Performers:</strong> Stores with the highest sales include Store 26 ($25,000.00) and Store 30 ($24,500.00).<br>
+                <strong>Low Performers:</strong> Stores with the lowest sales include Store 20 ($10,100.00) and Store 19 ($10,200.00).
             </p>
             <h3>Visualisation: Monthly Sales Distribution</h3>
-            <p>The histogram below shows the distribution of monthly sales:</p>
+            <p>
+                The histogram below shows the frequency distribution of monthly sales. The dashed lines represent the mean (red) and median (green), demonstrating that most stores cluster around these values, with a few outliers at both ends.
+            </p>
             <img src="/Business-Analytics-Code/Lecture%202/Interpreting%20Descriptive%20Statistics/output/Step%201/Monthly_Sales_Distribution.png" alt="Monthly Sales Distribution" style="width:100%;max-width:800px;">
             <h3>Visualisation: Monthly Sales Boxplot</h3>
-            <p>The boxplot below highlights the spread and outliers in monthly sales:</p>
+            <p>
+                The boxplot below highlights the spread of sales, with the box representing the interquartile range (IQR) and the whiskers showing the range of the data (excluding outliers). The absence of extreme outliers indicates a relatively normal spread.
+            </p>
             <img src="/Business-Analytics-Code/Lecture%202/Interpreting%20Descriptive%20Statistics/output/Step%201/Monthly_Sales_Boxplot.png" alt="Monthly Sales Boxplot" style="width:100%;max-width:800px;">
+            <h3>Reporting Guidelines</h3>
+            <p>
+                <strong>Peer-Reviewed Research:</strong> When reporting these metrics in an academic context, include clear definitions, statistical significance tests, and context-specific implications. For instance:
+                <blockquote>
+                    "The dataset's standard deviation ($3,986.66) reflects high variability, suggesting significant disparities between store performances (range: $10,100.00 - $25,000.00). The similarity between the mean ($16,688.00) and median ($16,650.00) suggests minimal skewness, supporting the assumption of normality."
+                </blockquote>
+            </p>
+            <p>
+                <strong>Business Stakeholders:</strong> For non-technical audiences, focus on actionable insights:
+                <blockquote>
+                    "The average store generates $16,688.00 monthly in sales, with top performers achieving up to $25,000.00. However, high variability indicates opportunities to support underperforming stores, which average just $10,100.00 in sales."
+                </blockquote>
+            </p>
         </section>
+        
         <section>
             <h2>Step 2: Segmenting Stores by Performance</h2>
             <p>
@@ -49,6 +84,7 @@
             </p>
             <img src="/Business-Analytics-Code/Lecture%202/Interpreting%20Descriptive%20Statistics/output/Step%202/Segment_Summary_Bar_Line_Plot.png" alt="Segment Summary Bar and Line Plot" style="width:100%;max-width:800px;">
         </section>
+        
         <section>
             <h2>Step 3: Exploring Relationships Between Metrics</h2>
             <p>
