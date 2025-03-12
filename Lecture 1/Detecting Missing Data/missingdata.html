@@ -15,106 +15,140 @@
         <section>
             <h2>Introduction</h2>
             <p>
-                Missing data is a significant challenge in data analysis, affecting the quality and reliability of insights. 
-                Detecting missing data is the first step in understanding and addressing these gaps. 
-                This page covers the techniques to summarise, visualise, and understand missing data using Python.
+                Missing data occurs when values are not available or not recorded in your dataset. 
+                Identifying and understanding missing data is crucial because it influences the accuracy and reliability of your analysis. 
+                This guide provides step-by-step explanations and clear examples of how to summarise and visualise missing data using Python and R, enabling you to easily apply these methods to your own data.
             </p>
         </section>
+        
         <section>
             <h2>Summarising Missing Data</h2>
             <p>
-                Summarising missing data involves quantifying the number of missing entries in each column 
-                and calculating the percentage of missing values relative to the total dataset.
+                To summarise missing data, you first count the number of missing entries in each column and then calculate the percentage of the dataset these missing entries represent.
+                This summary helps identify which columns have significant amounts of missing data.
             </p>
+            <h3>Python Example Explained</h3>
             <pre>
 <code>
-# Calculate missing values
+# Step 1: Count missing values in each column
 missing_summary = data.isnull().sum()
+
+# Step 2: Calculate the percentage of missing values in each column
 missing_percentage = (missing_summary / len(data)) * 100
 
-# Combine into a summary table
-missing_summary_table = pd.DataFrame({
-    "Missing Count": missing_summary,
-    "Missing Percentage": missing_percentage
+# Step 3: Create a clear summary table combining counts and percentages
+table_missing = pd.DataFrame({
+    'Missing Count': missing_summary,
+    'Missing Percentage': missing_percentage
 })
+
+# Step 4: Display the summary table
+print(table_missing)
+</code>
+            </pre>
+
+            <h3>R Example Explained</h3>
+            <pre>
+<code>
+# Step 1: Count missing values in each column
+missing_summary <- colSums(is.na(data))
+
+# Step 2: Calculate the percentage of missing values
+missing_percentage <- (missing_summary / nrow(data)) * 100
+
+# Step 3: Combine these results into a simple summary table
+table_missing <- data.frame(
+    'Missing Count' = missing_summary,
+    'Missing Percentage' = missing_percentage
+)
+
+# Step 4: Display the summary table
+print(table_missing)
 </code>
             </pre>
             <p>
-                The summary table provides a clear view of which columns have missing values and the extent of the issue, 
-                helping prioritise efforts to handle the missing data.
+                By clearly following these steps, you can easily summarise missing data in your own datasets, making the data-cleaning process much simpler.
             </p>
         </section>
+
         <section>
             <h2>Visualising Missing Data</h2>
             <p>
-                Visualisation techniques provide a quick and intuitive way to locate and understand patterns in missing data. 
-                The following methods are commonly used:
+                Visualising missing data makes it easy to quickly identify where the missing values occur, allowing you to detect patterns or problem areas at a glance. 
+                Two effective visualisation methods are heatmaps and bar charts.
             </p>
-            <ul>
-                <li><strong>Heatmaps:</strong> Highlights missing data with a colour map for easy identification.</li>
-                <li><strong>Bar Charts:</strong> Visualise the count and percentage of missing data per column.</li>
-            </ul>
-            <h3>Heatmap Example</h3>
-            <p>The heatmap below provides an example of visualising missing values in a dataset:</p>
-            <img src="Figure_1 - heatmaps.png" alt="Heatmap of Missing Data" style="width:100%;max-width:800px;" />
+
+            <h3>Python Heatmap Example Explained</h3>
+            <pre>
+<code>
+# Step 1: Use seaborn to create a heatmap showing missing data clearly
+sns.heatmap(data.isnull(), cbar=False, cmap='viridis')
+
+# Step 2: Add a clear title to your heatmap
+plt.title('Heatmap of Missing Data')
+
+# Step 3: Display the heatmap
+plt.show()
+</code>
+            </pre>
+
+            <h3>R Heatmap Example Explained</h3>
+            <pre>
+<code>
+# Step 1: Load the Amelia package for visualisation
+library(Amelia)
+
+# Step 2: Create a heatmap to clearly identify missing values
+missmap(data, col=c('yellow', 'black'), legend=TRUE)
+</code>
+            </pre>
+            <p>
+                These heatmaps clearly show the exact locations of missing values in your dataset.
+            </p>
+
+            <h3>Python Bar Chart Example Explained</h3>
+            <pre>
+<code>
+# Step 1: Create a bar chart showing the count of missing values per column
+missing_summary.plot(kind='bar', color='steelblue')
+plt.title('Count of Missing Values per Column')
+plt.ylabel('Count')
+plt.show()
+
+# Step 2: Create a bar chart showing the percentage of missing values per column
+missing_percentage.plot(kind='bar', color='darkorange')
+plt.title('Percentage of Missing Values per Column')
+plt.ylabel('Percentage (%)')
+plt.show()
+</code>
+            </pre>
+
+            <h3>R Bar Chart Example Explained</h3>
+            <pre>
+<code>
+# Step 1: Create a bar chart showing the count of missing values
+barplot(missing_summary, main='Count of Missing Values per Column',
+        ylab='Count', col='steelblue', las=2)
+
+# Step 2: Create a bar chart showing the percentage of missing values
+barplot(missing_percentage, main='Percentage of Missing Values per Column',
+        ylab='Percentage (%)', col='darkorange', las=2)
+</code>
+            </pre>
+            <p>
+                Bar charts visually summarise missing data clearly, making it simple to understand and communicate findings.
+            </p>
         </section>
-        <section>
-            <h2>Code Examples</h2>
-            <h3>Loading and Summarising Missing Data</h3>
-            <pre>
-<code>
-# Load the dataset
-data = pd.read_excel("Large_Business_Dataset_Missing_Values.xlsx")
 
-# Summarise missing data
-missing_summary = data.isnull().sum()
-missing_percentage = (missing_summary / len(data)) * 100
-
-# Combine into a summary table
-missing_summary_table = pd.DataFrame({
-    "Missing Count": missing_summary,
-    "Missing Percentage": missing_percentage
-})
-
-# Display summary
-print(missing_summary_table)
-</code>
-            </pre>
-            <h3>Heatmap for Missing Data</h3>
-            <pre>
-<code>
-# Visualise missing data with a heatmap
-sns.heatmap(data.isnull(), cbar=False, cmap="viridis")
-plt.title("Heatmap of Missing Data")
-plt.show()
-</code>
-            </pre>
-            <h3>Bar Charts for Missing Data</h3>
-            <p>Visualising missing data as bar charts helps identify which columns require attention:</p>
-            <pre>
-<code>
-# Bar chart: Count of missing values
-missing_summary.plot(kind="bar", color="steelblue")
-plt.title("Count of Missing Values per Column")
-plt.ylabel("Count")
-plt.show()
-
-# Bar chart: Percentage of missing values
-missing_percentage.plot(kind="bar", color="darkorange")
-plt.title("Percentage of Missing Values per Column")
-plt.ylabel("Percentage (%)")
-plt.show()
-</code>
-            </pre>
-        </section>
         <section>
             <h2>Conclusion</h2>
             <p>
-                Detecting missing data is a crucial step in the data cleaning process. By summarising and visualising missing values, 
-                analysts can develop targeted strategies for imputation or removal, ensuring the integrity of their analyses.
+                Understanding how to detect missing data through clear summaries and visualisations empowers you to make better-informed decisions about data cleaning.
+                The step-by-step examples provided here enable you to confidently apply these methods to your own datasets using Python or R.
             </p>
         </section>
     </main>
 </body>
 </html>
+
 
