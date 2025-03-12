@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # Replace the file path with the actual location of your dataset file.
 # Ensure the dataset contains missing values for meaningful analysis.
 # Watch the file format (Excel, CSV, etc.) while using the read function. 
-file_path = "Lecture 1/Detcting Missing Data/Large_Business_Dataset_Missing_Values.xlsx"  # Update with your file path
+file_path = r"Lecture 1\Detecting Missing Data\Large_Business_Dataset_Missing_Values.xlsx"  # Update with your file path
 
 data = pd.read_excel(file_path)
 

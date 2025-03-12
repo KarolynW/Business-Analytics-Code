@@ -2,9 +2,13 @@ import pandas as pd
 
 # Step 1: Load the dataset
 # Replace the file path with the actual location of your dataset file.
-file_path = "Lecture 1/Detcting Missing Data/Large_Business_Dataset_Missing_Values.xlsx"  # Update with your file path
+file_path = r"Lecture 1\Detecting Missing Data\Large_Business_Dataset_Missing_Values.xlsx"  # Use raw string (r"") for Windows paths
 
-data = pd.read_excel(file_path)
+# Alternative: Use double backslashes if not using raw string
+# file_path = "Lecture 1\\Detecting Missing Data\\Large_Business_Dataset_Missing_Values.xlsx"
+
+# Load Excel file using pandas
+data = pd.read_excel(file_path, engine="openpyxl")  # Ensure 'openpyxl' is used for .xlsx files
 
 # Step 2: Display basic information about the dataset
 # This will show the structure of the dataset, including column names, data types, and non-null counts.
