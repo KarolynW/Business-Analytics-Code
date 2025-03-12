@@ -3,394 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Imputation Techniques</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <script src="/Business-Analytics-Code/navigation.js" defer></script>
-
+    <title>Data Imputation Task - Olympus Manufacturing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        ul {
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Data Imputation Techniques</h1>
-    </header>
-    <main>
-        <section>
-            <h2>Introduction to Data Imputation</h2>
-            <p>
-                Missing data is a frequent challenge in datasets across industries. It occurs when some values are absent from a dataset, which can happen for several reasons:
-            </p>
-            <ul>
-                <li><strong>Human error:</strong> Data entry mistakes, forgotten fields, or accidental deletions.</li>
-                <li><strong>Survey non-responses:</strong> Participants may skip certain questions, leading to gaps in the data.</li>
-                <li><strong>System limitations:</strong> Some devices or software might fail to capture specific data points.</li>
-                <li><strong>Data corruption:</strong> Files may be damaged due to technical failures, leading to missing values.</li>
-            </ul>
-            <p>
-                The presence of missing data can severely impact the **quality and reliability** of any analysis. It can:
-            </p>
-            <ul>
-                <li>Reduce the accuracy of models and lead to biased results.</li>
-                <li>Distort statistical measures like means, variances, and correlations.</li>
-                <li>Cause errors in machine learning models, especially if missing values are not handled correctly.</li>
-            </ul>
-            <p>
-                <strong>Data imputation</strong> refers to the process of replacing missing or null values with estimated ones. This helps maintain dataset integrity and ensures more reliable analytical outcomes. There are multiple ways to impute missing values, ranging from simple approaches like filling in the mean to advanced machine learning-based methods.
-            </p>
-            <p>
-                In this guide, we explore the following **four key imputation techniques**, explaining how they work and demonstrating their implementation in both <strong>Python</strong> and <strong>R</strong>:
-            </p>
-            <ol>
-                <li><strong>Mean/Median Imputation:</strong> Simple techniques based on summary statistics.</li>
-                <li><strong>K-Nearest Neighbour (KNN) Imputation:</strong> A similarity-based approach that estimates values using data from similar observations.</li>
-                <li><strong>Multiple Imputation:</strong> A sophisticated statistical technique that accounts for uncertainty by creating multiple imputed datasets.</li>
-                <li><strong>Validation of Imputation:</strong> Methods for assessing whether the imputed values are reasonable and do not introduce bias.</li>
-            </ol>
-            <p>
-                Each method is demonstrated with both Python and R examples, allowing learners to apply these techniques in their preferred programming language.
-            </p>
-            <p><strong>Key Learning Outcomes:</strong> By the end of this section, you will be able to:</p>
-            <ul>
-                <li>Understand why missing data occurs and its potential consequences.</li>
-                <li>Recognize different imputation techniques and when to use them.</li>
-                <li>Implement missing data imputation using Python and R.</li>
-                <li>Evaluate the effectiveness of imputation techniques using validation methods.</li>
-            </ul>
-        </section>
+
+    <h1>Data Imputation Task - Olympus Manufacturing</h1>
+
+    <h2>Scenario</h2>
+    <p>
+        Olympus Manufacturing, a UK-based company, operates two factories that produce industrial components for various industries such as automotive, construction, and consumer goods. 
+        Their manufacturing process involves sourcing raw materials, assembling components, conducting quality control checks, and distributing products to suppliers and businesses.
+    </p>
     
+    <p>
+        Recently, data analysts at Olympus Manufacturing have identified **missing values** in critical operational datasets. 
+        These missing values create inefficiencies in production tracking, quality control, and supply chain management.
+        Your task is to <strong>detect, analyse, and handle missing data</strong> using appropriate **data imputation techniques**.
+    </p>
 
-        <section>
-            <h2>1. Mean/Median Imputation</h2>
-            <p>
-                Mean and median imputation are foundational techniques for handling missing values. These methods involve replacing missing values in a dataset with statistical estimates, ensuring that the dataset remains the same size and structure while minimizing data loss.
-            </p>
-            <h3>How It Works</h3>
+    <h2>Task: Imputing Missing Data</h2>
+    <p>
+        You have been given a sample dataset (<strong>olympus_manufacturing_data.xlsx</strong>), which includes:
+    </p>
+    <ul>
+        <li><strong>Raw Material Inventory:</strong> Data on material levels across both factories.</li>
+        <li><strong>Production Line Efficiency:</strong> Records of assembly times and component production rates.</li>
+        <li><strong>Quality Control Reports:</strong> Inspection results indicating whether components meet required standards.</li>
+        <li><strong>Distribution Logs:</strong> Records of finished product shipments from factories to clients.</li>
+    </ul>
+
+    <p>However, some key data points are missing, affecting:</p>
+    <ul>
+        <li><strong>Inventory records:</strong> Some materials are missing stock level data, leading to supply chain disruptions.</li>
+        <li><strong>Production efficiency metrics:</strong> Some assembly times and defect rates are missing, affecting efficiency analysis.</li>
+        <li><strong>Quality control reports:</strong> Missing inspection results make it difficult to track manufacturing errors.</li>
+        <li><strong>Distribution tracking:</strong> Some shipments lack status updates, impacting delivery accuracy.</li>
+    </ul>
+
+    <h2>Your Task</h2>
+    <p>
+        Your objective is to apply **data imputation techniques** using Python or R to **handle missing values** in the dataset. Specifically, you need to:
+    </p>
+    <ul>
+        <li><strong>Load</strong> the dataset into Python or R.</li>
+        <li><strong>Identify</strong> missing values and summarise them (count & percentage).</li>
+        <li><strong>Choose an appropriate imputation technique</strong> based on the dataset structure.</li>
+        <li><strong>Implement</strong> imputation using **at least two methods**, such as:
             <ul>
-                <li><strong>Mean Imputation:</strong> Missing values are replaced with the <em>mean</em> (average) of all observed values in the column.</li>
-                <li><strong>Median Imputation:</strong> Missing values are replaced with the <em>median</em> (middle value of sorted data), which is robust to extreme values.</li>
+                <li><strong>Mean/Median Imputation</strong> for numerical data.</li>
+                <li><strong>K-Nearest Neighbour (KNN) Imputation</strong> for structured data.</li>
+                <li><strong>Multiple Imputation</strong> for datasets requiring more robust handling.</li>
             </ul>
-            <p>
-                These techniques are computationally efficient and are particularly useful for numerical data. However, they should only be used when the proportion of missing values is <strong>small</strong> and the data is <strong>missing at random (MAR)</strong>.
-            </p>
+        </li>
+        <li><strong>Visualise</strong> missing data before and after imputation using heatmaps and bar charts.</li>
+        <li><strong>Validate</strong> the imputation by comparing distributions and correlations before and after filling missing values.</li>
+        <li><strong>Save and download</strong> all analysis outputs, including summaries, imputed datasets, and visualisations.</li>
+    </ul>
 
-            <h3>Python Code Example</h3>
-            <pre><code>
-import pandas as pd
+    <h2>Hints for Students</h2>
+    <ul>
+        <li>Use <strong>pandas</strong> in Python or <strong>dplyr</strong> in R to explore the dataset.</li>
+        <li>For visualization, use **seaborn** in Python or **ggplot2** in R.</li>
+        <li>Use the **sklearn KNNImputer** in Python or **VIM::kNN** in R for KNN imputation.</li>
+        <li>Compare **summary statistics before and after imputation** to evaluate accuracy.</li>
+        <li>Check if relationships between variables have changed after imputation.</li>
+    </ul>
 
-# Sample dataset with missing values
-data = pd.DataFrame({'Column': [10, 15, 20, None, 30, 40, None, 50]})
-
-# Replace missing values in the column with the mean
-data['Column'] = data['Column'].fillna(data['Column'].mean())
-
-# Replace missing values with the median
-data['Column'] = data['Column'].fillna(data['Column'].median())
-
-# Display dataset after imputation
-print(data)
-            </code></pre>
-
-            <h3>R Code Example</h3>
-            <pre><code>
-# Load required package
-library(dplyr)
-
-# Sample dataset with missing values
-data <- data.frame(Column = c(10, 15, 20, NA, 30, 40, NA, 50))
-
-# Replace missing values in the column with the mean
-data$Column <- ifelse(is.na(data$Column), mean(data$Column, na.rm = TRUE), data$Column)
-
-# Replace missing values with the median
-data$Column <- ifelse(is.na(data$Column), median(data$Column, na.rm = TRUE), data$Column)
-
-# Display dataset after imputation
-print(data)
-            </code></pre>
-
-            <h3>Visual Impact</h3>
-            <p>
-                The following boxplot illustrates how mean and median imputation impact data distribution. 
-                Notice how mean imputation can shift the data towards the <strong>right or left</strong> if extreme values (outliers) are present, while median imputation maintains a more balanced representation.
-            </p>
-            <img src="Imputation Validation/output/PurchaseAmount_outlier_comparison.png" alt="Boxplot Comparison">
-
-            <h3>Comparison of Mean vs. Median Imputation</h3>
-            <table>
-                <tr>
-                    <th>Technique</th>
-                    <th>Advantages</th>
-                    <th>Challenges</th>
-                </tr>
-                <tr>
-                    <td><strong>Mean Imputation</strong></td>
-                    <td>
-                        <ul>
-                            <li>Simple to implement and computationally efficient.</li>
-                            <li>Useful when data follows a normal distribution.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Highly sensitive to outliers, which can skew the dataset.</li>
-                            <li>Can distort relationships between variables.</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>Median Imputation</strong></td>
-                    <td>
-                        <ul>
-                            <li>More robust to outliers compared to mean imputation.</li>
-                            <li>Better suited for skewed distributions.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Does not preserve the overall mean of the dataset.</li>
-                            <li>Can create artificial clustering in certain scenarios.</li>
-                        </ul>
-                    </td>
-                </tr>
-            </table>
-
-            <h3>Key Takeaways</h3>
-            <ul>
-                <li><strong>Use mean imputation</strong> if the data is <strong>normally distributed</strong> and outliers are not a concern.</li>
-                <li><strong>Use median imputation</strong> if the data has <strong>skewness or outliers</strong> that could impact the mean.</li>
-                <li>These methods should only be used when missing values are <strong>randomly distributed and a small proportion</strong> of the dataset.</li>
-            </ul>
-        </section>
-
-
-
-        <section>
-            <h2>2. K-Nearest Neighbour (KNN) Imputation</h2>
-            <p>
-                K-Nearest Neighbour (KNN) Imputation is an advanced technique that estimates missing values based on the most similar (nearest) observations in the dataset.
-                It works by identifying <strong>K</strong> similar observations and using their values to impute the missing data points.
-            </p>
-            
-            <h3>How KNN Imputation Works</h3>
-            <p>
-                The technique identifies the <em>K</em> nearest neighbours to a data point with missing values based on a chosen **distance metric**. Common metrics include:
-            </p>
-            <ul>
-                <li><strong>Euclidean Distance</strong>: Used for numerical data, calculates the straight-line distance between two points.</li>
-                <li><strong>Manhattan Distance</strong>: Measures distance by summing the absolute differences in each dimension.</li>
-                <li><strong>Hamming Distance</strong>: Used for categorical data, calculates the number of positions at which two strings differ.</li>
-            </ul>
-            <p>
-                Once the nearest neighbours are identified, the missing value is replaced with the **mean (for numerical data)** or the **most frequent category (for categorical data)** of the neighbours.
-            </p>
-
-            <h3>Example Scenario</h3>
-            <p>
-                Suppose we have a dataset with customer information, including income, age, and purchase history.
-                If a customer's income value is missing, KNN Imputation finds the <strong>K</strong> customers with similar age and purchase history
-                and assigns the missing income value as the **average** of these K neighbours.
-            </p>
-
-            <h3>Python Code Example</h3>
-            <pre><code>
-from sklearn.impute import KNNImputer
-import pandas as pd
-import numpy as np
-
-# Sample dataset with missing values
-data = pd.DataFrame({'Age': [25, 30, 35, np.nan, 40, 50, np.nan, 45], 
-                     'Income': [30000, 40000, 50000, 60000, np.nan, 80000, 90000, np.nan]})
-
-# Initialize KNN Imputer with k=3 (using 3 nearest neighbors)
-imputer = KNNImputer(n_neighbors=3)
-imputed_data = pd.DataFrame(imputer.fit_transform(data), columns=data.columns)
-
-# Display imputed dataset
-print(imputed_data)
-            </code></pre>
-
-            <h3>R Code Example</h3>
-            <pre><code>
-# Load required library
-library(VIM)
-
-# Sample dataset with missing values
-data <- data.frame(Age = c(25, 30, 35, NA, 40, 50, NA, 45),
-                   Income = c(30000, 40000, 50000, 60000, NA, 80000, 90000, NA))
-
-# Perform KNN imputation with k=3
-imputed_data <- kNN(data, k = 3)
-
-# Display imputed dataset
-print(imputed_data)
-            </code></pre>
-
-            <h3>Visualizing KNN Imputation Impact</h3>
-            <p>
-                The figure below demonstrates how KNN Imputation fills in missing values by averaging the nearest neighbours' data.
-            </p>
-            <img src="Imputation Validation/output/KNN_Imputation.png" alt="KNN Imputation Visualization">
-
-            <h3>Advantages of KNN Imputation</h3>
-            <ul>
-                <li>Accounts for relationships between multiple variables, improving accuracy.</li>
-                <li>Works well for both numerical and categorical data.</li>
-                <li>Does not assume an underlying data distribution (unlike mean/median imputation).</li>
-            </ul>
-
-            <h3>Challenges of KNN Imputation</h3>
-            <ul>
-                <li>Computationally expensive, especially for large datasets.</li>
-                <li>Requires choosing an appropriate value for <em>K</em>, which can affect imputation quality.</li>
-                <li>Performance is dependent on the distance metric used.</li>
-            </ul>
-
-            <h3>Key Takeaways</h3>
-            <ul>
-                <li>Choose <strong>K carefully</strong>; a small value may lead to biased estimates, while a large value may dilute the information.</li>
-                <li>KNN works well when missing values are dependent on other features.</li>
-                <li>Use only when the dataset is **not too large**, as the computational cost grows with the number of records.</li>
-            </ul>
-        </section>
-
-
-        <section>
-            <h2>4. Validation of Imputation</h2>
-            <p>
-                Validation is the process of ensuring that imputed values are plausible and do not distort the dataset's characteristics.
-                Simply filling in missing values does not guarantee that the dataset remains accurate or unbiased.
-                Poorly chosen imputation techniques can introduce distortions, affecting statistical analyses and predictive models.
-            </p>
-
-            <h3>Why Validate Imputed Data?</h3>
-            <p>
-                After imputing missing values, it is crucial to validate the results to ensure that:
-            </p>
-            <ul>
-                <li>The distribution of data remains consistent before and after imputation.</li>
-                <li>Relationships between variables are preserved and not artificially created.</li>
-                <li>Imputation does not introduce systematic bias.</li>
-            </ul>
-
-            <h3>Methods for Validating Imputation</h3>
-            <p>
-                Several techniques can be used to assess whether imputation has been applied correctly:
-            </p>
-            <ul>
-                <li><strong>Distribution Comparison:</strong> Before and after imputation, the dataset's distribution should be visually inspected using histograms or density plots.</li>
-                <li><strong>Statistical Summary Check:</strong> Compare summary statistics (mean, median, variance) before and after imputation.</li>
-                <li><strong>Correlation Analysis:</strong> Check if relationships between variables have changed significantly after imputation.</li>
-                <li><strong>Outlier Analysis:</strong> Ensure that imputed values do not create artificial outliers.</li>
-            </ul>
-
-            <h3>Python Code Example</h3>
-            <pre><code>
-import seaborn as sns
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
-
-# Sample dataset with missing values
-original = pd.DataFrame({'PurchaseAmount': [100, 200, 300, None, 400, 500, None, 600]})
-imputed = original.copy()
-
-# Impute missing values using mean imputation
-imputed['PurchaseAmount'].fillna(imputed['PurchaseAmount'].mean(), inplace=True)
-
-# Visual comparison of distributions before and after imputation
-plt.figure(figsize=(10,5))
-sns.kdeplot(data=original['PurchaseAmount'], label="Before Imputation", fill=True)
-sns.kdeplot(data=imputed['PurchaseAmount'], label="After Imputation", fill=True)
-plt.legend()
-plt.title("Distribution Comparison Before and After Imputation")
-plt.show()
-            </code></pre>
-
-            <h3>R Code Example</h3>
-            <pre><code>
-# Load required libraries
-library(ggplot2)
-
-# Sample dataset with missing values
-data <- data.frame(PurchaseAmount = c(100, 200, 300, NA, 400, 500, NA, 600))
-
-# Create an imputed version of the dataset using mean imputation
-imputed_data <- data
-imputed_data$PurchaseAmount[is.na(imputed_data$PurchaseAmount)] <- mean(data$PurchaseAmount, na.rm = TRUE)
-
-# Visual comparison of distributions before and after imputation
-ggplot() +
-  geom_density(aes(x = data$PurchaseAmount, color = "Before Imputation"), na.rm = TRUE) +
-  geom_density(aes(x = imputed_data$PurchaseAmount, color = "After Imputation"), na.rm = TRUE) +
-  labs(title = "Distribution Comparison Before and After Imputation") +
-  theme_minimal()
-            </code></pre>
-
-            <h3>Example Distribution Comparison</h3>
-            <p>
-                The figure below illustrates how the distribution of data changes after imputation. 
-                A significant shift in the distribution may indicate that the imputation method has introduced bias.
-            </p>
-            <img src="Imputation Validation/output/PurchaseAmount_distribution_comparison.png" alt="Distribution Comparison">
-
-            <h3>Key Considerations in Validation</h3>
-            <ul>
-                <li>Ensure that imputation <strong>does not significantly alter</strong> the data distribution.</li>
-                <li>Check whether imputation has affected <strong>correlations between variables</strong>.</li>
-                <li>Compare statistical summaries (mean, median, variance) before and after imputation.</li>
-                <li>Be mindful of potential bias when using imputation for predictive modeling.</li>
-            </ul>
-
-            <h3>Key Takeaways</h3>
-            <ul>
-                <li><strong>Distribution checks</strong> help detect any unwanted changes in the dataset.</li>
-                <li><strong>Correlation checks</strong> ensure relationships between variables are maintained.</li>
-                <li>Imputation methods should be chosen based on the dataset characteristics to avoid bias.</li>
-            </ul>
-        </section>
-
-
-        <section>
-            <h2>Conclusion</h2>
-            <p>
-                Handling missing data is a critical step in ensuring the reliability and accuracy of data analysis. 
-                Data imputation techniques provide powerful methods to fill in gaps, preserving the structure of datasets while minimizing bias and distortion.
-            </p>
-            <p>
-                However, no single imputation method is universally optimal. The choice of technique should be guided by:
-            </p>
-            <ul>
-                <li>The <strong>proportion of missing data</strong>: Small amounts of missing data may be handled with simple methods like mean or median imputation, whereas larger gaps require advanced techniques.</li>
-                <li>The <strong>distribution and nature of the data</strong>: If data contains outliers, median imputation may be preferred over mean imputation. If missing values are correlated with other variables, KNN or multiple imputation is more appropriate.</li>
-                <li>The <strong>business or research context</strong>: In some cases, imputing missing values incorrectly may lead to misleading conclusions, making validation an essential step.</li>
-            </ul>
-            <p>
-                Throughout this guide, we explored several imputation techniques:
-            </p>
-            <ul>
-                <li><strong>Mean/Median Imputation</strong>: Simple, effective for small gaps in normally distributed numerical data.</li>
-                <li><strong>K-Nearest Neighbour (KNN) Imputation</strong>: Uses relationships between variables to infer missing values, useful for structured datasets.</li>
-                <li><strong>Multiple Imputation</strong>: Provides robust, statistically sound imputation by creating multiple plausible datasets.</li>
-                <li><strong>Validation of Imputation</strong>: Ensures that imputation does not introduce bias or distort data distributions.</li>
-            </ul>
-
-            <h3>Final Recommendations</h3>
-            <p>
-                When handling missing data, it is important to follow best practices:
-            </p>
-            <ul>
-                <li><strong>Always explore the nature of missing data</strong> before deciding on an imputation method.</li>
-                <li><strong>Use domain knowledge</strong> to ensure imputed values make sense in context.</li>
-                <li><strong>Validate imputed data</strong> by comparing statistical summaries and distributions before and after imputation.</li>
-                <li><strong>Consider multiple imputation</strong> when working with datasets where uncertainty needs to be accounted for.</li>
-                <li><strong>Document the imputation process</strong> for transparency and reproducibility in analysis.</li>
-            </ul>
-
-            <p>
-                In real-world applications, missing data is unavoidable, but with the right imputation strategy, analysts can minimize its impact and maintain high-quality datasets. 
-                By choosing the most appropriate technique and validating results, organizations can ensure that their data-driven decisions are based on complete and reliable information.
-            </p>
-        </section>
-    </main>
 </body>
 </html>
+
 
 
